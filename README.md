@@ -13,3 +13,4 @@
 - Interno
   - Autenticação
     - [Cadastro de usuários](documentacao/autenticacao/DocCadastroUsuario.md)
+    - [Login de usuários](documentacao/autenticacao/DocLoginUsuario.md)

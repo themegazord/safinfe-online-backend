@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Repositories\Interfaces\Contador\IContador;
 use App\Repositories\Interfaces\Usuario\IUsuario;
+use App\Repositories\Repository\Eloquent\Contador\ContadorRepository;
 use App\Repositories\Repository\Eloquent\Usuario\UsuarioRepository;
 use App\Services\Autenticacao\CadastroService;
 use App\Services\Autenticacao\LoginService;
+use App\Services\Contador\ContadorService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +27,11 @@ class AppServiceProvider extends ServiceProvider
             $usuarioRepository = $app->make(IUsuario::class);
             return new LoginService($usuarioRepository);
         });
+        $this->app->scoped(ContadorService::class, function (Application $app) {
+            $contadorRepository = $app->make(IContador::class);
+            $cadastroService = $app->make(CadastroService::class);
+            return new ContadorService($contadorRepository, $cadastroService);
+        });
     }
 
     /**
@@ -32,5 +40,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->bind(IUsuario::class, UsuarioRepository::class);
+        $this->app->bind(IContador::class, ContadorRepository::class);
     }
 }

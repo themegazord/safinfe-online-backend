@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class CadastroService {
     public function __construct(private readonly IUsuario $usuarioRepository) { }
 
-    public function cadastro(array $usuario): User {
+    public function cadastro(array $usuario): User|AutenticacaoException {
         $this->verificaSeEmailExiste($usuario['email']);
         $usuario['password'] = Hash::make($usuario['password']);
         return $this->usuarioRepository->cadastro($usuario);

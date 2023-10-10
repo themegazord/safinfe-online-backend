@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Autenticacao\AutenticacaoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::prefix('v1')->group(function () {
+    Route::prefix('interno')->group(function () {
+        Route::prefix('autenticacao')->group(function () {
+            Route::post('cadastro', [AutenticacaoController::class, 'cadastro'])->name('autenticacao.cadastro');
+            Route::post('login', [AutenticacaoController::class, 'login'])->name('autenticacao.login');
+        });
+    });
+    Route::prefix('externo')->group(function () {
+    });
 });

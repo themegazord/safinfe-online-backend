@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Repositories\Interfaces\Usuario\IUsuario;
 use App\Repositories\Repository\Eloquent\Usuario\UsuarioRepository;
 use App\Services\Autenticacao\CadastroService;
+use App\Services\Autenticacao\LoginService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->scoped(CadastroService::class, function (Application $app) {
             $usuarioRepository = $app->make(IUsuario::class);
             return new CadastroService($usuarioRepository);
+        });
+        $this->app->scoped(LoginService::class, function (Application $app) {
+            $usuarioRepository = $app->make(IUsuario::class);
+            return new LoginService($usuarioRepository);
         });
     }
 

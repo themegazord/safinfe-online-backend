@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Interfaces\Usuario;
 
-use App\Models\Usuario;
+use App\Models\User;
 
 interface IUsuario {
-    public function cadastro(array $usuario): Usuario;
-    public function consultaEmail(string $email): ?Usuario;
+    public function cadastro(array $usuario): User;
+    public function consultaEmail(string $email): ?User;
 }

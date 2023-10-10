@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Autenticacao\Cadastro;
+namespace App\Http\Requests\Autenticacao\Login;
 
 use App\Http\Requests\MensagensGeral;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CadastroRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,6 @@ class CadastroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string|max:155",
             "email" => "required|email|max:255",
             "password" => "required|string|max:255"
         ];
@@ -34,7 +33,6 @@ class CadastroRequest extends FormRequest
             "required" => MensagensGeral::$required,
             "string" => MensagensGeral::$string,
             "email" => MensagensGeral::$email,
-            "name.max" => MensagensGeral::maxLenght("nome", 155),
             "email.max" => MensagensGeral::maxLenght("email", 155),
             "password.max" => MensagensGeral::maxLenght("senha", 155),
         ];

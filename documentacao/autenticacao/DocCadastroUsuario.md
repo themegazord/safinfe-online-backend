@@ -12,17 +12,17 @@ Rota utilizada para cadastro de usuário dentro do sistema
 
 | Parametro | Tipo   | Tamanho | Descrição        | Obrigatório? |
 |-----------|--------|---------|------------------|--------------|
-| nome      | string | 155     | Nome do usuário  | Sim          |
+| name      | string | 155     | Nome do usuário  | Sim          |
 | email     | string | 255     | Email do usuário | Sim          |
-| senha     | string | 255     | Senha do usuário | Sim          |
+| password  | string | 255     | Senha do usuário | Sim          |
 
 ## Exemplo de requisição
 
 ```json
 {
-    "nome": "Gustavo de Camargo Campos",
+    "name": "Gustavo de Camargo Campos",
     "email": "contato.wanjalagus@outlook.com.br",
-    "senha": "81590619"
+    "password": "81590619"
 }
 ```
 
@@ -37,7 +37,7 @@ Rota utilizada para cadastro de usuário dentro do sistema
 ```json
 {
     "usuario": {
-        "nome": "Gustavo de Camargo Campos",
+        "name": "Gustavo de Camargo Campos",
         "email": "contato.wanjalagus@outlook.com.br",
         "updated_at": "2023-10-09T19:43:39.000000Z",
         "created_at": "2023-10-09T19:43:39.000000Z",

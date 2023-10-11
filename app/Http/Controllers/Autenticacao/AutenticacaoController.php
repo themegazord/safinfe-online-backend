@@ -19,7 +19,7 @@ class AutenticacaoController extends Controller
 
     public function cadastro(CadastroRequest $request): JsonResponse {
         try {
-            return response()->json(["usuario" => $this->cadastroService->cadastro($request->only(['name', 'email', 'password']))]);
+            return response()->json(["usuario" => $this->cadastroService->cadastro($request->only(['name', 'email', 'password']))->only(['id', 'name','email', 'updated_at', 'created_at'])]);
         } catch (AutenticacaoException $ae) {
             return response()->json(["erro" => $ae->getMessage()], $ae->getCode());
         }

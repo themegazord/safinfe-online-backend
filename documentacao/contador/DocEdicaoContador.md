@@ -8,6 +8,12 @@ Rota usada para editar um contador dentro do sistema.
 
 ![Static Badge](https://img.shields.io/badge/PUT-%2Fapi%2Fv1%2Finterno%2Fcontador%2Fedicao%2F{id}-%23FCA130)
 
+## Parametro do endpoint
+
+| Parametro | Tipo | Tamanho   | Descrição                        | Obrigatório? |
+|-----------|------|-----------|----------------------------------|--------------|
+| id        | int  | undefined | Id do contador que deseja editar | Sim          |
+
 ## Parametro de requisição
 
 | Parametro      | Tipo   | Descrição                | Obrigatório? |

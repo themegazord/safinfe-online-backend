@@ -60,8 +60,9 @@ class ContadorService {
      * @throws ContadorException
      */
     public function remocaoContador(int $id): mixed {
-        $this->consultaPorId($id);
-        return $this->contadorRepository->remocaoContador($id);
+        $contador = $this->consultaPorId($id);
+        $this->contadorRepository->remocaoContador($id);
+        return $this->cadastroService->remocaoUsuario($contador->getAttribute('user_id'));
     }
 
     /**

@@ -16,4 +16,11 @@ class UsuarioRepository implements IUsuario {
             ->where('email', $email)
             ->first();
     }
+
+    public function remocaoUsuario(int $id): mixed
+    {
+        return User::query()
+            ->where('id', $id)
+            ->delete();
+    }
 }

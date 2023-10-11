@@ -16,6 +16,10 @@ class CadastroService {
         return $this->usuarioRepository->cadastro($usuario);
     }
 
+    public function remocaoUsuario(int $id): mixed {
+        return $this->usuarioRepository->remocaoUsuario($id);
+    }
+
     private function verificaSeEmailExiste(string $email): AutenticacaoException|bool {
         return !is_null($this->usuarioRepository->consultaEmail($email)) ? AutenticacaoException::emailJaExiste($email) : true;
     }

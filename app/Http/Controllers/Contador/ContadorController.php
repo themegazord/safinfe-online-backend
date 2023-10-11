@@ -46,7 +46,7 @@ class ContadorController extends Controller
                 return response()->json(["erro" => $e->getMessage()], $e->getCode());
             }
         }
-        return response()->json(["erro" => "Você não enviou o arquivo ou ele não é valido."]);
+        return response()->json(["erro" => "Você não enviou o arquivo ou ele não é valido."], Response::HTTP_BAD_REQUEST);
     }
 
     public function show(string $id): JsonResponse

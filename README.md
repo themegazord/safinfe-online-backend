@@ -16,3 +16,4 @@
     - [Login de usuários](documentacao/autenticacao/DocLoginUsuario.md)
   - Contador
     - [Cadastro de contador](documentacao/contador/DocCadastroContador.md)
+    - [Cadastro em massa de contadores](documentacao/contador/DocCadastroEmMassaContador.md)

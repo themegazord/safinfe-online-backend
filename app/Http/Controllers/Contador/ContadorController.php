@@ -33,6 +33,12 @@ class ContadorController extends Controller
         }
     }
 
+    public function storeXML(Request $request) {
+        if($request->hasFile('arquivo') && $request->file('arquivo')->isValid()) {
+            $this->contadorService->cadastroXML($request->file('arquivo'));
+        }
+    }
+
     /**
      * Display the specified resource.
      */

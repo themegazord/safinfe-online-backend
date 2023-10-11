@@ -2,10 +2,14 @@
 
 namespace App\Services\Contador;
 
+use App\Actions\LeitorFiltroExcel;
 use App\Exceptions\Autenticacao\AutenticacaoException;
 use App\Models\Contador;
 use App\Repositories\Interfaces\Contador\IContador;
 use App\Services\Autenticacao\CadastroService;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
 
 class ContadorService {
     public function __construct(
@@ -18,5 +22,16 @@ class ContadorService {
         $contador['user_id'] = $usuario->id;
         $contador['contador_senha'] = $usuario->password;
         return $this->contadorRepository->cadastro($contador);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function cadastroXML(UploadedFile $arquivo) {
+        $arquivo->move(public_path('storage/tempImportContador'), $arquivo->getClientOriginalName());
+        $leitorFiltroExcel = new LeitorFiltroExcel(public_path('storage/tempImportContador/') . $arquivo->getClientOriginalName());
+        foreach($leitorFiltroExcel->preparaArrayDados() as $contador) {
+            $this->cadastro($contador);
+        }
     }
 }

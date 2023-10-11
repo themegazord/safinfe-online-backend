@@ -25,6 +25,7 @@ Route::prefix('v1')->group(function () {
         Route::middleware('auth:sanctum')->group(function () {
             Route::prefix('contador')->group(function () {
                 Route::post('cadastro', [ContadorController::class, 'store'])->name('contador.store');
+                Route::post('cadastroXML', [ContadorController::class, 'storeXML'])->name('contador.storeXML');
             });
         });
     });

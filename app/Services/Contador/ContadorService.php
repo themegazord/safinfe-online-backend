@@ -51,6 +51,14 @@ class ContadorService {
     /**
      * @throws ContadorException
      */
+    public function edicaoContador(array $contador, int $id): int {
+        $this->consultaPorId($id);
+        return $this->contadorRepository->edicaoContador($contador, $id);
+    }
+
+    /**
+     * @throws ContadorException
+     */
     private function consultaPorId(int $id): Contador|ContadorException {
         $contador = $this->contadorRepository->consultaPorId($id);
         return !is_null($contador) ? $contador : ContadorException::contadorInexistente();

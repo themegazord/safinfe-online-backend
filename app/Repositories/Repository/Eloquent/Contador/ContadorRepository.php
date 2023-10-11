@@ -25,4 +25,11 @@ class ContadorRepository implements IContador {
             ->where('contador_id', $id)
             ->first();
     }
+
+    public function edicaoContador(array $contador, int $id): int
+    {
+        return Contador::query()
+            ->where('contador_id', $id)
+            ->update($contador);
+    }
 }

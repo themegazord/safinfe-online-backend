@@ -6,6 +6,7 @@ use App\Exceptions\Autenticacao\AutenticacaoException;
 use App\Exceptions\Contador\ContadorException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Contador\CadastroContadorRequest;
+use App\Http\Requests\Contador\EdicaoContadorRequest;
 use App\Services\Contador\ContadorService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -59,9 +60,21 @@ class ContadorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EdicaoContadorRequest $request, string $id): JsonResponse
     {
-        //
+        try {
+            $this->contadorService->edicaoContador($request->only(["contador_nome", "contador_email"]), $id);
+            return response()->json([
+                "mensagem" => "Contador atualizado com sucesso.",
+                "contador" => [
+                    "contador_id" => $id,
+                    "contador_nome" => $request->get("contador_nome"),
+                    "contador_email" => $request->get("contador_email")
+                ]
+            ]);
+        } catch (ContadorException $ce) {
+            return response()->json(["erro" => $ce->getMessage()], $ce->getCode());
+        }
     }
 
     /**

@@ -10,4 +10,5 @@ interface IContador {
     public function paginacaoContadores(): LengthAwarePaginator;
     public function consultaPorId(int $id): ?Contador;
     public function edicaoContador(array $contador, int $id): int;
+    public function remocaoContador(int $id): mixed;
 }

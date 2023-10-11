@@ -11,6 +11,7 @@ use App\Services\Contador\ContadorService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Symfony\Component\HttpFoundation\Response;
 
 class ContadorController extends Controller
 {
@@ -80,8 +81,13 @@ class ContadorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
-        //
+        try {
+            $this->contadorService->remocaoContador($id);
+            return response()->json(["mensagem" => "Contador removido com sucesso."], Response::HTTP_NO_CONTENT);
+        } catch (ContadorException $ce) {
+            return response()->json(["erro" => $ce->getMessage()], $ce->getCode());
+        }
     }
 }

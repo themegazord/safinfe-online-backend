@@ -32,4 +32,11 @@ class ContadorRepository implements IContador {
             ->where('contador_id', $id)
             ->update($contador);
     }
+
+    public function remocaoContador(int $id): mixed
+    {
+        return Contador::query()
+            ->where('contador_id', $id)
+            ->delete();
+    }
 }

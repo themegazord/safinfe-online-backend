@@ -59,6 +59,14 @@ class ContadorService {
     /**
      * @throws ContadorException
      */
+    public function remocaoContador(int $id): mixed {
+        $this->consultaPorId($id);
+        return $this->contadorRepository->remocaoContador($id);
+    }
+
+    /**
+     * @throws ContadorException
+     */
     private function consultaPorId(int $id): Contador|ContadorException {
         $contador = $this->contadorRepository->consultaPorId($id);
         return !is_null($contador) ? $contador : ContadorException::contadorInexistente();

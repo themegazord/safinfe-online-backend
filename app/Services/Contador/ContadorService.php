@@ -8,6 +8,7 @@ use App\Models\Contador;
 use App\Repositories\Interfaces\Contador\IContador;
 use App\Services\Autenticacao\CadastroService;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
 
@@ -27,11 +28,15 @@ class ContadorService {
     /**
      * @throws Exception
      */
-    public function cadastroXML(UploadedFile $arquivo) {
+    public function cadastroXML(UploadedFile $arquivo): void {
         $arquivo->move(public_path('storage/tempImportContador'), $arquivo->getClientOriginalName());
         $leitorFiltroExcel = new LeitorFiltroExcel(public_path('storage/tempImportContador/') . $arquivo->getClientOriginalName());
         foreach($leitorFiltroExcel->preparaArrayDados() as $contador) {
             $this->cadastro($contador);
         }
+    }
+
+    public function paginacaoContadores(): LengthAwarePaginator {
+        return $this->contadorRepository->paginacaoContadores();
     }
 }

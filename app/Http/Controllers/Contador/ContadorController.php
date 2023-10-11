@@ -8,6 +8,7 @@ use App\Http\Requests\Contador\CadastroContadorRequest;
 use App\Services\Contador\ContadorService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ContadorController extends Controller
 {
@@ -16,9 +17,9 @@ class ContadorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): LengthAwarePaginator
     {
-        //
+        return $this->contadorService->paginacaoContadores();
     }
 
     public function store(CadastroContadorRequest $request): JsonResponse

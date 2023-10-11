@@ -18,3 +18,4 @@
     - [Cadastro de contador](documentacao/contador/DocCadastroContador.md)
     - [Cadastro em massa de contadores](documentacao/contador/DocCadastroEmMassaContador.md)
     - [Paginação de contadores](documentacao/contador/DocPaginacaoContador.md)
+    - [Consulta de contador](documentacao/contador/DocConsultaContador.md)

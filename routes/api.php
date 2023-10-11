@@ -27,6 +27,7 @@ Route::prefix('v1')->group(function () {
                 Route::post('cadastro', [ContadorController::class, 'store'])->name('contador.store');
                 Route::post('cadastroXML', [ContadorController::class, 'storeXML'])->name('contador.storeXML');
                 Route::get('paginacao', [ContadorController::class, 'index'])->name('contador.index');
+                Route::get('consulta/{id}', [ContadorController::class, 'show'])->name('contador.show');
             });
         });
     });

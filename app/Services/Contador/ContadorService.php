@@ -4,6 +4,7 @@ namespace App\Services\Contador;
 
 use App\Actions\LeitorFiltroExcel;
 use App\Exceptions\Autenticacao\AutenticacaoException;
+use App\Exceptions\Contador\ContadorException;
 use App\Models\Contador;
 use App\Repositories\Interfaces\Contador\IContador;
 use App\Services\Autenticacao\CadastroService;
@@ -38,5 +39,20 @@ class ContadorService {
 
     public function paginacaoContadores(): LengthAwarePaginator {
         return $this->contadorRepository->paginacaoContadores();
+    }
+
+    /**
+     * @throws ContadorException
+     */
+    public function consulta(int $id): Contador|ContadorException {
+        return $this->consultaPorId($id);
+    }
+
+    /**
+     * @throws ContadorException
+     */
+    private function consultaPorId(int $id): Contador|ContadorException {
+        $contador = $this->contadorRepository->consultaPorId($id);
+        return !is_null($contador) ? $contador : ContadorException::contadorInexistente();
     }
 }

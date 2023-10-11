@@ -18,4 +18,11 @@ class ContadorRepository implements IContador {
         return Contador::query()
             ->paginate(10, ['contador_id', 'contador_nome', 'contador_email']);
     }
+
+    public function consultaPorId(int $id): ?Contador
+    {
+        return Contador::query()
+            ->where('contador_id', $id)
+            ->first();
+    }
 }

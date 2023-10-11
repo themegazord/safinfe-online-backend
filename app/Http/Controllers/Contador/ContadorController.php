@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Contador;
 
 use App\Exceptions\Autenticacao\AutenticacaoException;
+use App\Exceptions\Contador\ContadorException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Contador\CadastroContadorRequest;
 use App\Services\Contador\ContadorService;
@@ -46,12 +47,13 @@ class ContadorController extends Controller
         return response()->json(["erro" => "Você não enviou o arquivo ou ele não é valido."]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
-        //
+        try {
+            return response()->json(["contador" => $this->contadorService->consulta($id)]);
+        } catch (ContadorException $ce) {
+            return response()->json(["erro" => $ce->getMessage()], $ce->getCode());
+        }
     }
 
     /**

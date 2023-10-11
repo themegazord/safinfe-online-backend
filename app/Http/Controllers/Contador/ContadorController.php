@@ -33,10 +33,16 @@ class ContadorController extends Controller
         }
     }
 
-    public function storeXML(Request $request) {
+    public function storeXML(Request $request): JsonResponse {
         if($request->hasFile('arquivo') && $request->file('arquivo')->isValid()) {
-            $this->contadorService->cadastroXML($request->file('arquivo'));
+            try {
+                $this->contadorService->cadastroXML($request->file('arquivo'));
+                return response()->json(["mensagem" => "Contadores cadastrados com sucesso."]);
+            } catch (\Exception $e) {
+                return response()->json(["erro" => $e->getMessage()], $e->getCode());
+            }
         }
+        return response()->json(["erro" => "Você não enviou o arquivo ou ele não é valido."]);
     }
 
     /**

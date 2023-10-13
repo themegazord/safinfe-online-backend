@@ -2,6 +2,7 @@
 
 namespace App\Services\Cliente;
 
+use App\Actions\LeitorFiltroExcel;
 use App\Actions\ValidadorCNPJ;
 use App\Actions\ValidadorCPF;
 use App\Exceptions\Contador\ContadorException;
@@ -10,6 +11,8 @@ use App\Models\Cliente;
 use App\Repositories\Interfaces\Cliente\ICliente;
 use App\Services\Autenticacao\CadastroService;
 use App\Services\Contador\ContadorService;
+use Illuminate\Http\UploadedFile;
+use PhpOffice\PhpSpreadsheet\Reader\Exception;
 
 class ClienteService
 {
@@ -36,5 +39,16 @@ class ClienteService
         $cliente['user_id'] = $usuarioNovo->getAttribute('id');
         $cliente['cliente_senha'] = $usuarioNovo->getAttribute('password');
         return $this->clienteRepository->cadastro($cliente);
+    }
+
+    /**
+     * @throws ContadorException
+     * @throws GeralException
+     * @throws Exception
+     */
+    public function cadastroXML(UploadedFile $arquivo): void {
+        $arquivo->move(public_path('storage/tempImportCliente'), $arquivo->getClientOriginalName());
+        $leitorFiltroExcel = new LeitorFiltroExcel(public_path('storage/tempImportCliente/') . $arquivo->getClientOriginalName());
+        foreach ($leitorFiltroExcel->preparaArrayDados('cliente') as $cliente) $this->cadastro($cliente);
     }
 }

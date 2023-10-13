@@ -10,6 +10,7 @@ use App\Http\Requests\Cliente\CadastroClienteRequest;
 use App\Services\Cliente\ClienteService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ClienteController extends Controller
 {
@@ -46,6 +47,18 @@ class ClienteController extends Controller
         } catch (GeralException $ge) {
             return response()->json(["erro" => $ge->getMessage()], $ge->getCode());
         }
+    }
+
+    public function storeXML(Request $request): JsonResponse {
+        if($request->hasFile('arquivo') && $request->file('arquivo')->isValid()) {
+            try {
+                $this->clienteService->cadastroXML($request->file('arquivo'));
+                return response()->json(["mensagem" => "Clientes cadastrados com sucesso."]);
+            } catch (\Exception $e) {
+                return response()->json(["erro" => $e->getMessage()], $e->getCode());
+            }
+        }
+        return response()->json(["erro" => "Você não enviou o arquivo ou ele não é valido."], Response::HTTP_BAD_REQUEST);
     }
 
     /**

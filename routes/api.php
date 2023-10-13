@@ -34,6 +34,7 @@ Route::prefix('v1')->group(function () {
             });
             Route::prefix('cliente')->group(function () {
                 Route::post('cadastro', [ClienteController::class, 'store'])->name('cliente.store');
+                Route::post('cadastroXML', [ClienteController::class, 'storeXML'])->name('cliente.storeXML');
             });
         });
     });

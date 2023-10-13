@@ -32,7 +32,7 @@ class ContadorService {
     public function cadastroXML(UploadedFile $arquivo): void {
         $arquivo->move(public_path('storage/tempImportContador'), $arquivo->getClientOriginalName());
         $leitorFiltroExcel = new LeitorFiltroExcel(public_path('storage/tempImportContador/') . $arquivo->getClientOriginalName());
-        foreach($leitorFiltroExcel->preparaArrayDados() as $contador) {
+        foreach($leitorFiltroExcel->preparaArrayDados('contador') as $contador) {
             $this->cadastro($contador);
         }
     }

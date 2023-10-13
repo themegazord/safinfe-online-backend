@@ -51,6 +51,14 @@ class ContadorService {
     /**
      * @throws ContadorException
      */
+    public function consultaPorEmail(string $email): Contador|ContadorException {
+        $contador = $this->contadorRepository->consultaPorEmail($email);
+        return !is_null($contador) ? $contador : ContadorException::contadorInexistente();
+    }
+
+    /**
+     * @throws ContadorException
+     */
     public function edicaoContador(array $contador, int $id): int {
         $this->consultaPorId($id);
         return $this->contadorRepository->edicaoContador($contador, $id);

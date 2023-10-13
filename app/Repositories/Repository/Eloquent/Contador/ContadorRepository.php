@@ -26,6 +26,13 @@ class ContadorRepository implements IContador {
             ->first();
     }
 
+    public function consultaPorEmail(string $email): ?Contador
+    {
+        return Contador::query()
+            ->where('contador_email', $email)
+            ->first();
+    }
+
     public function edicaoContador(array $contador, int $id): int
     {
         return Contador::query()

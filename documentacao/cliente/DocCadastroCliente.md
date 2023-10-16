@@ -13,7 +13,7 @@ Rota usada para cadastrar um cliente dentro do sistema, afim de, organizar e aux
 | Parametro        | Tipo   | Tamanho | Descrição                                        | Obrigatório? |
 |------------------|--------|---------|--------------------------------------------------|--------------|
 | cliente_nome     | string | 155     | O nome do novo cliente                           | Sim          |
-| cliente_email    | string | 255     | O email do novo cliente                          | Nome         |
+| cliente_email    | string | 255     | O email do novo cliente                          | Não         |
 | cliente_senha    | string | 255     | A senha do novo cliente                          | Sim          |
 | cliente_cpf_cnpj | string | 14      | O CPF ou CNPJ do cliente                         | Sim          |
 | contador_email   | string | 255     | O email do contador responsável por esse cliente | Sim          |

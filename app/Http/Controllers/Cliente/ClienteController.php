@@ -8,6 +8,7 @@ use App\Exceptions\Contador\ContadorException;
 use App\Exceptions\GeralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Cliente\CadastroClienteRequest;
+use App\Http\Requests\Cliente\EdicaoClienteRequest;
 use App\Services\Cliente\ClienteService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -77,9 +78,25 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EdicaoClienteRequest $request, string $id)
     {
-        //
+        try {
+            $this->clienteService->edicaoPorId($request->only([
+                'contador_email',
+                'cliente_nome',
+                'cliente_cpf_cnpj',
+                'cliente_email'
+            ]), $id);
+            return response()->json([
+                "mensagem" => "Cliente atualizado com sucesso"
+            ]);
+        } catch (GeralException $ge) {
+            return response()->json(["erro" => $ge->getMessage()], $ge->getCode());
+        } catch (ClienteException $ce) {
+            return response()->json(["erro" => $ce->getMessage()], $ce->getCode());
+        } catch (ContadorException $ce) {
+            return response()->json(["erro" => $ce->getMessage()], $ce->getCode());
+        }
     }
 
     /**

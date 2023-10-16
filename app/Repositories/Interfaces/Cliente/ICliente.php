@@ -10,4 +10,5 @@ interface ICliente
     public function cadastro(array $cliente): Cliente;
     public function paginacao(): LengthAwarePaginator;
     public function consultaPorId(int $id): ?Cliente;
+    public function edicaoPorId(array $cliente, int $id): int;
 }

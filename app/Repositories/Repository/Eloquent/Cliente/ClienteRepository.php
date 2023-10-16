@@ -36,4 +36,11 @@ class ClienteRepository implements ICliente
                 'cliente_email',
             ]);
     }
+
+    public function edicaoPorId(array $cliente, int $id): int
+    {
+        return Cliente::query()
+            ->where('cliente_id', $id)
+            ->update($cliente);
+    }
 }

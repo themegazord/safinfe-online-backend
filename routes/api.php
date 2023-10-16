@@ -37,6 +37,7 @@ Route::prefix('v1')->group(function () {
                 Route::post('cadastroXML', [ClienteController::class, 'storeXML'])->name('cliente.storeXML');
                 Route::get('paginacao', [ClienteController::class, 'index'])->name('cliente.index');
                 Route::get('consulta/{id}', [ClienteController::class, 'show'])->name('cliente.show');
+                Route::put('edicao/{id}', [ClienteController::class, 'update'])->name('cliente.update');
             });
         });
     });

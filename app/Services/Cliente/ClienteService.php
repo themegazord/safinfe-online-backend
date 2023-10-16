@@ -29,9 +29,7 @@ class ClienteService
      * @throws GeralException
      */
     public function cadastro(array $cliente): Cliente|GeralException {
-        if (strlen($cliente['cliente_cpf_cnpj']) != 14 && strlen($cliente['cliente_cpf_cnpj']) != 11) return GeralException::cpfOuCNPJInseridoIndevidamente($cliente['cliente_cpf_cnpj']);
-        if (strlen($cliente['cliente_cpf_cnpj']) == 11) ValidadorCPF::validar($cliente['cliente_cpf_cnpj']);
-        if (strlen($cliente['cliente_cpf_cnpj']) == 14) ValidadorCNPJ::validar($cliente['cliente_cpf_cnpj']);
+        $this->validaCPFCNPJ($cliente['cliente_cpf_cnpj']);
         $cliente['contador_id'] = $this->contadorService->consultaPorEmail($cliente['contador_email'])->getAttribute('contador_id');
         $usuarioNovo = $this->cadastroService->cadastro([
             'name' => $cliente['cliente_nome'],
@@ -61,5 +59,19 @@ class ClienteService
     public function consultaPorId(int $id): Cliente|ClienteException {
         $cliente = $this->clienteRepository->consultaPorId($id);
         return is_null($cliente) ? ClienteException::clienteInexistente() : $cliente;
+    }
+
+    public function edicaoPorId(array $cliente, int $id): int|ClienteException {
+        $this->consultaPorId($id);
+        $this->validaCPFCNPJ($cliente['cliente_cpf_cnpj']);
+        $cliente['contador_id'] = $this->contadorService->consultaPorEmail($cliente['contador_email'])->getAttribute('contador_id');
+        unset($cliente['contador_email']);
+        return $this->clienteRepository->edicaoPorId($cliente, $id);
+    }
+
+    private function validaCPFCNPJ(string $cpf_cnpj): void {
+        if (strlen($cpf_cnpj) != 14 && strlen($cpf_cnpj) != 11) throw GeralException::cpfOuCNPJInseridoIndevidamente($cpf_cnpj);
+        if (strlen($cpf_cnpj) == 11) ValidadorCPF::validar($cpf_cnpj);
+        if (strlen($cpf_cnpj) == 14) ValidadorCNPJ::validar($cpf_cnpj);
     }
 }

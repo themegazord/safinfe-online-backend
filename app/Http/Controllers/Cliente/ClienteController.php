@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cliente;
 
 use App\Exceptions\Autenticacao\AutenticacaoException;
+use App\Exceptions\Cliente\ClienteException;
 use App\Exceptions\Contador\ContadorException;
 use App\Exceptions\GeralException;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,7 @@ class ClienteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         return response()->json($this->clienteService->paginacao());
     }
@@ -66,7 +67,11 @@ class ClienteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            return response()->json(["cliente" => $this->clienteService->consultaPorId($id)]);
+        } catch (ClienteException $ce) {
+            return response()->json(["erro" => $ce->getMessage()], $ce->getCode());
+        }
     }
 
     /**

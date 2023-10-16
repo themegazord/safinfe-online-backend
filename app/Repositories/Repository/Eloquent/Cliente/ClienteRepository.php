@@ -24,4 +24,16 @@ class ClienteRepository implements ICliente
                 'cliente_email',
             ]);
     }
+
+    public function consultaPorId(int $id): ?Cliente
+    {
+        return Cliente::query()
+            ->where('cliente_id', $id)
+            ->first([
+                'cliente_id',
+                'cliente_nome',
+                'cliente_cpf_cnpj',
+                'cliente_email',
+            ]);
+    }
 }

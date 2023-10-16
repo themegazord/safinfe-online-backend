@@ -51,4 +51,8 @@ class ClienteService
         $leitorFiltroExcel = new LeitorFiltroExcel(public_path('storage/tempImportCliente/') . $arquivo->getClientOriginalName());
         foreach ($leitorFiltroExcel->preparaArrayDados('cliente') as $cliente) $this->cadastro($cliente);
     }
+
+    public function paginacao() {
+        return $this->clienteRepository->paginacao();
+    }
 }

@@ -21,3 +21,10 @@
     - [Consulta de contador](documentacao/contador/DocConsultaContador.md)
     - [Edicao de contador](documentacao/contador/DocEdicaoContador.md)
     - [Remocao de contador](documentacao/contador/DocRemocaoContador.md)
+  - Cliente
+    - [Cadastro de cliente](documentacao/cliente/DocCadastroCliente.md)
+    - [Cadastro em massa de clientes](documentacao/cliente/DocCadastroEmMassaCliente.md)
+    - [Paginação de clientes](documentacao/cliente/DocPaginacaoCliente.md)
+    - [Consulta de clientes](documentacao/cliente/DocConsultaCliente.md)
+    - [Edicao de cliente](documentacao/cliente/DocEdicaoCliente.md)
+    - [Remocao de cliente](documentacao/cliente/DocRemocaoCliente.md)

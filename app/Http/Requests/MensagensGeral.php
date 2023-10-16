@@ -11,4 +11,8 @@ class MensagensGeral {
     public static function maxLenght(string $nomeCampo, int $max): string {
         return "O campo [{$nomeCampo}] deve conter no máximo {$max} caracteres.";
     }
+
+    public static function exists(string $dado, string $nomeTabela): string {
+        return "{$dado} não existe na tabela [{$nomeTabela}].";
+    }
 }

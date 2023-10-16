@@ -32,7 +32,7 @@ class ContadorService {
     public function cadastroXML(UploadedFile $arquivo): void {
         $arquivo->move(public_path('storage/tempImportContador'), $arquivo->getClientOriginalName());
         $leitorFiltroExcel = new LeitorFiltroExcel(public_path('storage/tempImportContador/') . $arquivo->getClientOriginalName());
-        foreach($leitorFiltroExcel->preparaArrayDados() as $contador) {
+        foreach($leitorFiltroExcel->preparaArrayDados('contador') as $contador) {
             $this->cadastro($contador);
         }
     }
@@ -46,6 +46,14 @@ class ContadorService {
      */
     public function consulta(int $id): Contador|ContadorException {
         return $this->consultaPorId($id);
+    }
+
+    /**
+     * @throws ContadorException
+     */
+    public function consultaPorEmail(string $email): Contador|ContadorException {
+        $contador = $this->contadorRepository->consultaPorEmail($email);
+        return !is_null($contador) ? $contador : ContadorException::contadorInexistente();
     }
 
     /**

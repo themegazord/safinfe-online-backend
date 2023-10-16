@@ -27,3 +27,4 @@
     - [Paginação de clientes](documentacao/cliente/DocPaginacaoCliente.md)
     - [Consulta de clientes](documentacao/cliente/DocConsultaCliente.md)
     - [Edicao de cliente](documentacao/cliente/DocEdicaoCliente.md)
+    - [Remocao de cliente](documentacao/cliente/DocRemocaoCliente.md)

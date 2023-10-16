@@ -23,5 +23,6 @@
     - [Remocao de contador](documentacao/contador/DocRemocaoContador.md)
   - Cliente
     - [Cadastro de cliente](documentacao/cliente/DocCadastroCliente.md)
-    - [Cadastro em massa de contadores](documentacao/cliente/DocCadastroEmMassaCliente.md)
-    - [Paginação de contadores](documentacao/cliente/DocPaginacaoCliente.md)
+    - [Cadastro em massa de clientes](documentacao/cliente/DocCadastroEmMassaCliente.md)
+    - [Paginação de clientes](documentacao/cliente/DocPaginacaoCliente.md)
+    - [Consulta de clientes](documentacao/cliente/DocConsultaCliente.md)

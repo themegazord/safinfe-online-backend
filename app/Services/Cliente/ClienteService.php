@@ -69,6 +69,13 @@ class ClienteService
         return $this->clienteRepository->edicaoPorId($cliente, $id);
     }
 
+    public function remocaoPorId(int $id): mixed {
+        $usuarioId = $this->consultaPorId($id)->getAttribute('user_id');
+        $this->clienteRepository->remocaoPorId($id);
+        return $this->cadastroService->remocaoUsuario($usuarioId);
+
+    }
+
     private function validaCPFCNPJ(string $cpf_cnpj): void {
         if (strlen($cpf_cnpj) != 14 && strlen($cpf_cnpj) != 11) throw GeralException::cpfOuCNPJInseridoIndevidamente($cpf_cnpj);
         if (strlen($cpf_cnpj) == 11) ValidadorCPF::validar($cpf_cnpj);

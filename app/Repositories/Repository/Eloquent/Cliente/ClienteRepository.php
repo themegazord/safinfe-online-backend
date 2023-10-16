@@ -31,6 +31,7 @@ class ClienteRepository implements ICliente
             ->where('cliente_id', $id)
             ->first([
                 'cliente_id',
+                'user_id',
                 'cliente_nome',
                 'cliente_cpf_cnpj',
                 'cliente_email',
@@ -42,5 +43,12 @@ class ClienteRepository implements ICliente
         return Cliente::query()
             ->where('cliente_id', $id)
             ->update($cliente);
+    }
+
+    public function remocaoPorId(int $id): mixed
+    {
+        return Cliente::query()
+            ->where('cliente_id', $id)
+            ->delete();
     }
 }

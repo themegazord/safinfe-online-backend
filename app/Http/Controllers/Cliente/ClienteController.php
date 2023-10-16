@@ -41,7 +41,7 @@ class ClienteController extends Controller
                     'cliente_email',
                     'cliente_senha'
                 ]))
-            ]);
+            ], Response::HTTP_CREATED);
         } catch (ContadorException $ce) {
             return response()->json(['erro' => $ce->getMessage()], $ce->getCode());
         } catch (AutenticacaoException $ae) {
@@ -55,7 +55,7 @@ class ClienteController extends Controller
         if($request->hasFile('arquivo') && $request->file('arquivo')->isValid()) {
             try {
                 $this->clienteService->cadastroXML($request->file('arquivo'));
-                return response()->json(["mensagem" => "Clientes cadastrados com sucesso."]);
+                return response()->json(["mensagem" => "Clientes cadastrados com sucesso."], Response::HTTP_CREATED);
             } catch (\Exception $e) {
                 return response()->json(["erro" => $e->getMessage()], $e->getCode());
             }
@@ -104,6 +104,13 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $this->clienteService->remocaoPorId($id);
+            return response()->json([], Response::HTTP_NO_CONTENT);
+        } catch (ClienteException $ce) {
+            return response()->json(["erro" => $ce->getMessage()], $ce->getCode());
+        } catch (AutenticacaoException $ae) {
+            return response()->json(["erro" => $ae->getMessage()], $ae->getCode());
+        }
     }
 }

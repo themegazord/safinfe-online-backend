@@ -26,3 +26,4 @@
     - [Cadastro em massa de clientes](documentacao/cliente/DocCadastroEmMassaCliente.md)
     - [Paginação de clientes](documentacao/cliente/DocPaginacaoCliente.md)
     - [Consulta de clientes](documentacao/cliente/DocConsultaCliente.md)
+    - [Edicao de cliente](documentacao/cliente/DocEdicaoCliente.md)

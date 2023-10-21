@@ -2,16 +2,26 @@
 
 namespace App\Providers;
 
+use App\Models\DadosXML;
 use App\Repositories\Interfaces\Cliente\ICliente;
 use App\Repositories\Interfaces\Contador\IContador;
 use App\Repositories\Interfaces\Usuario\IUsuario;
+use App\Repositories\Interfaces\XML\DadosXML\IDadosXML;
+use App\Repositories\Interfaces\XML\DetalhesXML\IDetalhesXML;
+use App\Repositories\Interfaces\XML\IXML;
 use App\Repositories\Repository\Eloquent\Cliente\ClienteRepository;
 use App\Repositories\Repository\Eloquent\Contador\ContadorRepository;
 use App\Repositories\Repository\Eloquent\Usuario\UsuarioRepository;
+use App\Repositories\Repository\Eloquent\XML\DadosXML\DadosXMLRepository;
+use App\Repositories\Repository\Eloquent\XML\DetalhesXML\DetalhesXMLRepository;
+use App\Repositories\Repository\Eloquent\XML\XMLRepository;
 use App\Services\Autenticacao\CadastroService;
 use App\Services\Autenticacao\LoginService;
 use App\Services\Cliente\ClienteService;
 use App\Services\Contador\ContadorService;
+use App\Services\XML\DadosXML\DadosXMLService;
+use App\Services\XML\DetalhesXML\DetalhesXMLService;
+use App\Services\XML\XMLService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
@@ -41,6 +51,19 @@ class AppServiceProvider extends ServiceProvider
             $contadorService = $app->make(ContadorService::class);
             return new ClienteService($clienteRepository, $cadastroService, $contadorService);
         });
+        $this->app->scoped(XMLService::class, function (Application $app) {
+            $XMLRepository = $app->make(IXML::class);
+            return new XMLService($XMLRepository);
+        });
+        $this->app->scoped(DadosXMLService::class, function (Application $app) {
+            $dadosXMLRepository = $app->make(IDadosXML::class);
+            $clienteService = $app->make(ClienteService::class);
+            return new DadosXMLService($dadosXMLRepository, $clienteService);
+        });
+        $this->app->scoped(DetalhesXMLService::class, function (Application $app) {
+            $detalhesXMLRepository = $app->make(IDetalhesXML::class);
+            return new DetalhesXMLService($detalhesXMLRepository);
+        });
     }
 
     /**
@@ -51,5 +74,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IUsuario::class, UsuarioRepository::class);
         $this->app->bind(IContador::class, ContadorRepository::class);
         $this->app->bind(ICliente::class, ClienteRepository::class);
+        $this->app->bind(IXML::class, XMLRepository::class);
+        $this->app->bind(IDadosXML::class, DadosXMLRepository::class);
+        $this->app->bind(IDetalhesXML::class, DetalhesXMLRepository::class);
     }
 }

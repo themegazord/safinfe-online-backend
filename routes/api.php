@@ -3,6 +3,7 @@
 use App\Http\Controllers\Autenticacao\AutenticacaoController;
 use App\Http\Controllers\Cliente\ClienteController;
 use App\Http\Controllers\Contador\ContadorController;
+use App\Http\Controllers\XML\XMLController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,9 @@ Route::prefix('v1')->group(function () {
                 Route::get('consulta/{id}', [ClienteController::class, 'show'])->name('cliente.show');
                 Route::put('edicao/{id}', [ClienteController::class, 'update'])->name('cliente.update');
                 Route::delete('remocao/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
+            });
+            Route::prefix('xml')->group(function () {
+                Route::post('cadastro', [XMLController::class, 'store'])->name('xml.store');
             });
         });
     });

@@ -41,6 +41,10 @@ class ClienteService
         return $this->clienteRepository->cadastro($cliente);
     }
 
+    public function consultaCPFCNPJ(string $cliente_cpf_cnpj): ?Cliente {
+        return $this->clienteRepository->consultaCPFCNPJ($cliente_cpf_cnpj);
+    }
+
     /**
      * @throws ContadorException
      * @throws GeralException

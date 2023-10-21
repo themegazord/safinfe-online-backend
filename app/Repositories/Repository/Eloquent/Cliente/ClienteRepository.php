@@ -25,6 +25,19 @@ class ClienteRepository implements ICliente
             ]);
     }
 
+    public function consultaCPFCNPJ(string $cliente_cpf_cnpj): ?Cliente
+    {
+        return Cliente::query()
+            ->where('cliente_cpf_cnpj', $cliente_cpf_cnpj)
+            ->first([
+                'cliente_id',
+                'user_id',
+                'cliente_nome',
+                'cliente_cpf_cnpj',
+                'cliente_email',
+            ]);
+    }
+
     public function consultaPorId(int $id): ?Cliente
     {
         return Cliente::query()

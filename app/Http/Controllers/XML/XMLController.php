@@ -54,8 +54,12 @@ class XMLController extends Controller
         }
     }
 
-    public function primeiraEUltimasNotas(string $cliente_cpf_cnpj) {
-        return response()->json(['xmls' => $this->dadosXMLService->primeiroUltimoXML($cliente_cpf_cnpj)]);
+    public function primeiraEUltimasNotas(string $cliente_cpf_cnpj): JsonResponse {
+        try {
+            return response()->json(['xmls' => $this->dadosXMLService->primeiroUltimoXML($cliente_cpf_cnpj)]);
+        } catch (\Exception $e) {
+            return response()->json(["erro" => $e->getMessage()], $e->getCode());
+        }
     }
 
     /**

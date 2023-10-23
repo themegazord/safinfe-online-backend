@@ -24,4 +24,8 @@ class XML extends Model
     public function detalhesXML(): HasOne {
         return $this->hasOne(DetalhesXML::class, 'xml_id', 'xml_id');
     }
+
+    public function xml_eventos(): HasOne {
+        return $this->hasOne(XMLEventos::class, 'xml_id', 'xml_id');
+    }
 }

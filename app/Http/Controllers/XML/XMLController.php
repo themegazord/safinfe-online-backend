@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CadastroXMLRequest;
 use App\Services\XML\DadosXML\DadosXMLService;
 use App\Services\XML\DetalhesXML\DetalhesXMLService;
+use App\Services\XML\XMLEventos\XMLEventosService;
 use App\Services\XML\XMLService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class XMLController extends Controller
     public function __construct(
         private readonly XMLService $XMLService,
         private readonly DadosXMLService $dadosXMLService,
-        private readonly DetalhesXMLService $detalhesXMLService
+        private readonly DetalhesXMLService $detalhesXMLService,
+        private readonly XMLEventosService $XMLEventosService
     ){}
 
     /**
@@ -43,8 +45,16 @@ class XMLController extends Controller
         try {
             $arquivo = $request->file('arquivo');
             $xml = $this->XMLService->cadastro($arquivo);
-            $this->dadosXMLService->cadastro($arquivo, $xml->getAttribute('id'), $request->only(['cliente_cpf_cnpj', 'status']));
-            $this->detalhesXMLService->cadastro($arquivo, $xml->getAttribute('id'));
+
+            if (strtoupper($request->get('status')) == 'AUTORIZADA') {
+                $this->dadosXMLService->cadastro($arquivo, $xml->getAttribute('id'), $request->only(['cliente_cpf_cnpj', 'status']));
+                $this->detalhesXMLService->cadastro($arquivo, $xml->getAttribute('id'));
+            }
+            if (strtoupper($request->get('status')) == 'CANCELADA') {
+                $this->dadosXMLService->cadastroCancelado($arquivo, $xml->getAttribute('id'), $request->only(['cliente_cpf_cnpj', 'status']));
+                $this->XMLEventosService->cadastro($arquivo, $xml->getAttribute('id'));
+            }
+
             return response()->json(["mensagem" => "XML cadastrado com sucesso"], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return response()->json(["erro" => $e->getMessage()], $e->getCode());

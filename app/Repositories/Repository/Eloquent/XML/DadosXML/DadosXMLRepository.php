@@ -14,7 +14,7 @@ class DadosXMLRepository implements IDadosXML
             ->create($dadosXML);
     }
 
-    public function primeiroUltimoXML(int $cliente_id)
+    public function primeiroUltimoXML(int $cliente_id): array
     {
         $xmlCliente =  DadosXML::query()
             ->where('cliente_id', $cliente_id)

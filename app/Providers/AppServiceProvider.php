@@ -9,11 +9,13 @@ use App\Repositories\Interfaces\Usuario\IUsuario;
 use App\Repositories\Interfaces\XML\DadosXML\IDadosXML;
 use App\Repositories\Interfaces\XML\DetalhesXML\IDetalhesXML;
 use App\Repositories\Interfaces\XML\IXML;
+use App\Repositories\Interfaces\XML\XMLEventos\IXMLEventos;
 use App\Repositories\Repository\Eloquent\Cliente\ClienteRepository;
 use App\Repositories\Repository\Eloquent\Contador\ContadorRepository;
 use App\Repositories\Repository\Eloquent\Usuario\UsuarioRepository;
 use App\Repositories\Repository\Eloquent\XML\DadosXML\DadosXMLRepository;
 use App\Repositories\Repository\Eloquent\XML\DetalhesXML\DetalhesXMLRepository;
+use App\Repositories\Repository\Eloquent\XML\XMLEventos\XMLEventosRepository;
 use App\Repositories\Repository\Eloquent\XML\XMLRepository;
 use App\Services\Autenticacao\CadastroService;
 use App\Services\Autenticacao\LoginService;
@@ -21,6 +23,7 @@ use App\Services\Cliente\ClienteService;
 use App\Services\Contador\ContadorService;
 use App\Services\XML\DadosXML\DadosXMLService;
 use App\Services\XML\DetalhesXML\DetalhesXMLService;
+use App\Services\XML\XMLEventos\XMLEventosService;
 use App\Services\XML\XMLService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
@@ -64,6 +67,10 @@ class AppServiceProvider extends ServiceProvider
             $detalhesXMLRepository = $app->make(IDetalhesXML::class);
             return new DetalhesXMLService($detalhesXMLRepository);
         });
+        $this->app->scoped(XMLEventosService::class, function (Application $app) {
+            $XMLEventosRepository = $app->make(IXMLEventos::class);
+            return new XMLEventosService($XMLEventosRepository);
+        });
     }
 
     /**
@@ -77,5 +84,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IXML::class, XMLRepository::class);
         $this->app->bind(IDadosXML::class, DadosXMLRepository::class);
         $this->app->bind(IDetalhesXML::class, DetalhesXMLRepository::class);
+        $this->app->bind(IXMLEventos::class, XMLEventosRepository::class);
     }
 }

@@ -54,6 +54,10 @@ class XMLController extends Controller
         }
     }
 
+    public function primeiraEUltimasNotas(string $cliente_cpf_cnpj) {
+        return response()->json(['xmls' => $this->dadosXMLService->primeiroUltimoXML($cliente_cpf_cnpj)]);
+    }
+
     /**
      * Display the specified resource.
      */

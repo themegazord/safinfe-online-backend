@@ -6,6 +6,7 @@ use App\Models\Cliente;
 use App\Repositories\Interfaces\XML\DadosXML\IDadosXML;
 use App\Services\Cliente\ClienteService;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 
 class DadosXMLService {
     public function __construct(
@@ -20,6 +21,11 @@ class DadosXMLService {
         $xml = $this->validaTrataXML($arquivo);
         $infNFe = simplexml_load_string($xml)->NFe[0]->infNFe[0];
         $this->dadosXMLRepository->cadastro($this->trataDadosXML($infNFe->ide, $infNFe->attributes()['Id'], $dados['status'], $this->clienteService->consultaCPFCNPJ($dados['cliente_cpf_cnpj']), $idXML));
+    }
+
+    public function primeiroUltimoXML(string $cliente_cpf_cnpj) {
+        $cliente = $this->clienteService->consultaCPFCNPJ($cliente_cpf_cnpj);
+        return $this->dadosXMLRepository->primeiroUltimoXML($cliente->getAttribute('cliente_id'));
     }
 
     /**

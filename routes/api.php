@@ -47,5 +47,11 @@ Route::prefix('v1')->group(function () {
         });
     });
     Route::prefix('externo')->group(function () {
+        Route::middleware('auth:sanctum')->group(function() {
+            Route::prefix('xml')->group(function () {
+                Route::post('cadastro', [XMLController::class, 'store'])->name('xml.store');
+                Route::get('primeiro_ultimo_xml/{cliente_cpf_cnpj}', [XMLController::class, 'primeiraEUltimasNotas'])->name('xml.primeiraEUltimasNotas');
+            });
+        });
     });
 });

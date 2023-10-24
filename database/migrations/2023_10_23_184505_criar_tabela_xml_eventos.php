@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('xml_eventos', function(Blueprint $table) {
-            $table->id('xml_eventos_id');
-            $table->unsignedBigInteger('xml_id');
-            $table->string('justificativa', 155);
-            $table->timestamps();
-
-            $table->foreign('xml_id')->references('xml_id')->on('xml');
-        });
+//        Schema::create('xml_eventos', function(Blueprint $table) {
+//            $table->id('xml_eventos_id');
+//            $table->unsignedBigInteger('xml_id');
+//            $table->string('justificativa', 155);
+//            $table->timestamps();
+//
+//            $table->foreign('xml_id')->references('xml_id')->on('xml');
+//        });
     }
 
     /**
@@ -26,9 +26,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('xml_eventos', function(Blueprint $table) {
-            $table->dropForeign('xml_eventos_xml_id_foreign');
-        });
-        Schema::dropIfExists('xml_eventos');
+//        Schema::table('xml_eventos', function(Blueprint $table) {
+//            $table->dropForeign('xml_eventos_xml_id_foreign');
+//        });
+//        Schema::dropIfExists('xml_eventos');
     }
 };

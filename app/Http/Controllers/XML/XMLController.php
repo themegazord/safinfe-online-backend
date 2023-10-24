@@ -49,15 +49,17 @@ class XMLController extends Controller
             if (strtoupper($request->get('status')) == 'AUTORIZADA') {
                 $this->dadosXMLService->cadastro($arquivo, $xml->getAttribute('id'), $request->only(['cliente_cpf_cnpj', 'status']));
                 $this->detalhesXMLService->cadastro($arquivo, $xml->getAttribute('id'));
-            }
-            if (strtoupper($request->get('status')) == 'CANCELADA') {
+            } else if (strtoupper($request->get('status')) == 'CANCELADA') {
                 $this->dadosXMLService->cadastroCancelado($arquivo, $xml->getAttribute('id'), $request->only(['cliente_cpf_cnpj', 'status']));
-                $this->XMLEventosService->cadastro($arquivo, $xml->getAttribute('id'));
+            } else if (strtoupper($request->get('status')) == 'INUTILIZADA') {
+                $this->dadosXMLService->cadastroInutilizado($arquivo, $xml->getAttribute('id'), $request->only(['cliente_cpf_cnpj', 'status']));
+            } else {
+                return response()->json(["erro" => "Status do XML inválido"], Response::HTTP_BAD_REQUEST);
             }
 
             return response()->json(["mensagem" => "XML cadastrado com sucesso"], Response::HTTP_CREATED);
         } catch (\Exception $e) {
-            return response()->json(["erro" => $e->getMessage()], $e->getCode());
+            return response()->json(["erro" => $e->getMessage()]);
         } finally {
             $arquivo = $request->file('arquivo');
             unlink(public_path('storage/tempImportXML/') . $arquivo->getClientOriginalName());

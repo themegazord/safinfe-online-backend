@@ -15,9 +15,12 @@ class DadosXML extends Model
         'xml_id',
         'cliente_id',
         'status',
+        'modelo',
         'serie',
         'numeronf',
-        'dh_emissao',
+        'numeronf_final',
+        'justificativa',
+        'dh_emissao_evento',
         'chave',
     ];
 

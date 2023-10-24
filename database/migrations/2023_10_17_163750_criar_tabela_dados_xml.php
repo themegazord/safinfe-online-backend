@@ -16,9 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('xml_id');
             $table->unsignedBigInteger('cliente_id');
             $table->string('status', 15);
+            $table->integer('modelo');
             $table->integer('serie');
             $table->integer('numeronf');
-            $table->dateTime('dh_emisao');
+            $table->integer('numeronf_final')->nullable();
+            $table->string('justificativa')->nullable();
+            $table->dateTime('dh_emissao_evento');
             $table->string('chave', 45);
             $table->timestamps();
 

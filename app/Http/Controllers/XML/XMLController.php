@@ -44,11 +44,13 @@ class XMLController extends Controller
 
         try {
             $arquivo = $request->file('arquivo');
+//            if (!is_null($this->dadosXMLService->dadosXMLPorChave(str_replace('-', '', filter_var($arquivo->getClientOriginalName(), FILTER_SANITIZE_NUMBER_INT))))) {
+//                return response()->json(["mensagem" => "XML já cadastrado"], Response::HTTP_CONTINUE);
+//            }
             $xml = $this->XMLService->cadastro($arquivo);
-
             if (strtoupper($request->get('status')) == 'AUTORIZADA') {
                 $this->dadosXMLService->cadastro($arquivo, $xml->getAttribute('id'), $request->only(['cliente_cpf_cnpj', 'status']));
-                $this->detalhesXMLService->cadastro($arquivo, $xml->getAttribute('id'));
+//                $this->detalhesXMLService->cadastro($arquivo, $xml->getAttribute('id'));
             } else if (strtoupper($request->get('status')) == 'CANCELADA') {
                 $this->dadosXMLService->cadastroCancelado($arquivo, $xml->getAttribute('id'), $request->only(['cliente_cpf_cnpj', 'status']));
             } else if (strtoupper($request->get('status')) == 'INUTILIZADA') {

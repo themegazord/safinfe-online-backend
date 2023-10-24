@@ -24,4 +24,11 @@ class DadosXMLRepository implements IDadosXML
             'max' => $xmlCliente->max('numeronf'),
         ];
     }
+
+    public function dadosXMLPorChave(string $chave): ?DadosXML
+    {
+        return DadosXML::query()
+            ->where('chave', $chave)
+            ->first();
+    }
 }

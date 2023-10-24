@@ -3,6 +3,7 @@
 namespace App\Services\XML\DadosXML;
 
 use App\Models\Cliente;
+use App\Models\DadosXML;
 use App\Repositories\Interfaces\XML\DadosXML\IDadosXML;
 use App\Services\Cliente\ClienteService;
 use DateTime;
@@ -76,6 +77,9 @@ class DadosXMLService {
         return $this->dadosXMLRepository->primeiroUltimoXML($cliente->getAttribute('cliente_id'));
     }
 
+    public function dadosXMLPorChave(string $chave): ?DadosXML {
+        return $this->dadosXMLRepository->dadosXMLPorChave($chave);
+    }
     /**
      * @throws \Exception
      */

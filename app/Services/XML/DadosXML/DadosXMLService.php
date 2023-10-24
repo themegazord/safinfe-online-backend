@@ -136,7 +136,7 @@ class DadosXMLService {
             'numeronf' => $numeronf,
             'numeronf_final' => $numeronf_final,
             'justificativa' => $justificativa,
-            'dh_emissao' => $dhEvento->format('Y-m-d H:i:s'),
+            'dh_emissao_evento' => $dhEvento->format('Y-m-d H:i:s'),
             'chave' => $chaveNota
         ];
     }

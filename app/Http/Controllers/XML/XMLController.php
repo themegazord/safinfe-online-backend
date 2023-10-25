@@ -4,6 +4,7 @@ namespace App\Http\Controllers\XML;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CadastroXMLRequest;
+use App\Jobs\cadastroXML;
 use App\Services\XML\DadosXML\DadosXMLService;
 use App\Services\XML\DetalhesXML\DetalhesXMLService;
 use App\Services\XML\XMLEventos\XMLEventosService;
@@ -11,6 +12,7 @@ use App\Services\XML\XMLService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Redis;
 
 class XMLController extends Controller
 {
@@ -44,9 +46,9 @@ class XMLController extends Controller
 
         try {
             $arquivo = $request->file('arquivo');
-//            if (!is_null($this->dadosXMLService->dadosXMLPorChave(str_replace('-', '', filter_var($arquivo->getClientOriginalName(), FILTER_SANITIZE_NUMBER_INT))))) {
-//                return response()->json(["mensagem" => "XML já cadastrado"], Response::HTTP_CONTINUE);
-//            }
+            if (!is_null($this->dadosXMLService->dadosXMLPorChave(str_replace('-', '', filter_var($arquivo->getClientOriginalName(), FILTER_SANITIZE_NUMBER_INT))))) {
+                return response()->json(["info" => "XML já cadastrado"], Response::HTTP_CONFLICT);
+            }
             $xml = $this->XMLService->cadastro($arquivo);
             if (strtoupper($request->get('status')) == 'AUTORIZADA') {
                 $this->dadosXMLService->cadastro($arquivo, $xml->getAttribute('id'), $request->only(['cliente_cpf_cnpj', 'status']));
@@ -58,13 +60,13 @@ class XMLController extends Controller
             } else {
                 return response()->json(["erro" => "Status do XML inválido"], Response::HTTP_BAD_REQUEST);
             }
-
             return response()->json(["mensagem" => "XML cadastrado com sucesso"], Response::HTTP_CREATED);
         } catch (\Exception $e) {
             return response()->json(["erro" => $e->getMessage()]);
         } finally {
-            $arquivo = $request->file('arquivo');
-            unlink(public_path('storage/tempImportXML/') . $arquivo->getClientOriginalName());
+            if (file_exists(public_path('storage/tempImportXML/') . $request->file('arquivo')->getClientOriginalName())) {
+                unlink(public_path('storage/tempImportXML/') . $request->file('arquivo')->getClientOriginalName());
+            }
         }
     }
 

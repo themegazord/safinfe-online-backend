@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\XML;
 
+use App\Exceptions\Cliente\ClienteException;
+use App\Exceptions\Contador\ContadorException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CadastroXMLRequest;
-use App\Jobs\cadastroXML;
 use App\Services\XML\DadosXML\DadosXMLService;
 use App\Services\XML\DetalhesXML\DetalhesXMLService;
 use App\Services\XML\XMLEventos\XMLEventosService;
@@ -12,7 +13,6 @@ use App\Services\XML\XMLService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Redis;
 
 class XMLController extends Controller
 {
@@ -20,15 +20,19 @@ class XMLController extends Controller
         private readonly XMLService $XMLService,
         private readonly DadosXMLService $dadosXMLService,
         private readonly DetalhesXMLService $detalhesXMLService,
-        private readonly XMLEventosService $XMLEventosService
     ){}
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
+    public function index(string $contadorEmail, string $cliente_cpf_cnpj, int $perPage): JsonResponse {
+        try {
+            return response()->json(["dados_xml" => $this->dadosXMLService->paginacaoDadosXML(email_contador: $contadorEmail, cliente_cpf_cnpj: $cliente_cpf_cnpj, perPage: $perPage)]);
+        } catch (ClienteException $e) {
+            return response()->json(["erro" => $e->getMessage()], $e->getCode());
+        } catch (ContadorException $ce) {
+            return response()->json(["erro" => $ce->getMessage()], $ce->getCode());
+        }
     }
 
     /**

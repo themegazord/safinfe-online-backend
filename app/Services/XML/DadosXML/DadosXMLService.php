@@ -2,18 +2,24 @@
 
 namespace App\Services\XML\DadosXML;
 
+use App\Exceptions\Cliente\ClienteException;
+use App\Exceptions\Contador\ContadorException;
 use App\Models\Cliente;
+use App\Models\Contador;
 use App\Models\DadosXML;
 use App\Repositories\Interfaces\XML\DadosXML\IDadosXML;
 use App\Services\Cliente\ClienteService;
+use App\Services\Contador\ContadorService;
 use DateTime;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class DadosXMLService {
     public function __construct(
         private readonly IDadosXML $dadosXMLRepository,
         private readonly ClienteService $clienteService,
+        private readonly ContadorService $contadorService
     ){}
 
     /**
@@ -80,6 +86,19 @@ class DadosXMLService {
     public function dadosXMLPorChave(string $chave): ?DadosXML {
         return $this->dadosXMLRepository->dadosXMLPorChave($chave);
     }
+
+    /**
+     * @throws ClienteException
+     * @throws ContadorException
+     */
+    public function paginacaoDadosXML(string $email_contador, string $cliente_cpf_cnpj, int $perPage): LengthAwarePaginator|ClienteException|ContadorException {
+        $this->contadorService->consultaPorEmail($email_contador);
+        $cliente = $this->clienteService->consultaCPFCNPJ($cliente_cpf_cnpj);
+        if (is_null($cliente)) return ClienteException::clienteInexistente();
+        $this->verificaSeClientePertenceContador($email_contador, $cliente);
+        return $this->dadosXMLRepository->paginacaoDadosXML($cliente->getAttribute('cliente_id'), $perPage);
+    }
+
     /**
      * @throws \Exception
      */
@@ -147,5 +166,12 @@ class DadosXMLService {
 
     private function validaTrataXML(UploadedFile $arquivo): false|string {
         return file_get_contents(public_path('storage/tempImportXML/') . $arquivo->getClientOriginalName());
+    }
+
+    /**
+     * @throws ClienteException
+     */
+    private function verificaSeClientePertenceContador(string $contador_email, Cliente $cliente): Model|ClienteException {
+        return $cliente->contador()->where('contador_email', $contador_email)->first() ?? ClienteException::contadorClienteInvalido(contador_email: $contador_email, cliente_nome: $cliente->getAttribute('cliente_nome'));
     }
 }

@@ -61,15 +61,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->scoped(DadosXMLService::class, function (Application $app) {
             $dadosXMLRepository = $app->make(IDadosXML::class);
             $clienteService = $app->make(ClienteService::class);
-            return new DadosXMLService($dadosXMLRepository, $clienteService);
+            $contadorService = $app->make(ContadorService::class);
+            return new DadosXMLService($dadosXMLRepository, $clienteService, $contadorService);
         });
         $this->app->scoped(DetalhesXMLService::class, function (Application $app) {
             $detalhesXMLRepository = $app->make(IDetalhesXML::class);
             return new DetalhesXMLService($detalhesXMLRepository);
-        });
-        $this->app->scoped(XMLEventosService::class, function (Application $app) {
-            $XMLEventosRepository = $app->make(IXMLEventos::class);
-            return new XMLEventosService($XMLEventosRepository);
         });
     }
 
@@ -84,6 +81,5 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IXML::class, XMLRepository::class);
         $this->app->bind(IDadosXML::class, DadosXMLRepository::class);
         $this->app->bind(IDetalhesXML::class, DetalhesXMLRepository::class);
-        $this->app->bind(IXMLEventos::class, XMLEventosRepository::class);
     }
 }

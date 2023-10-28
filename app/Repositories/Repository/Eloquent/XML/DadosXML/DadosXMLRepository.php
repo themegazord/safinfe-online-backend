@@ -30,6 +30,7 @@ class DadosXMLRepository implements IDadosXML
     {
         return DadosXML::query()
             ->where('chave', $chave)
+            ->where('status', 'AUTORIZADA')
             ->first();
     }
 

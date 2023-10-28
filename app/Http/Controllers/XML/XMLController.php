@@ -12,6 +12,7 @@ use App\Services\XML\XMLEventos\XMLEventosService;
 use App\Services\XML\XMLService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use PHPUnit\Exception;
 use Symfony\Component\HttpFoundation\Response;
 
 class XMLController extends Controller
@@ -50,9 +51,9 @@ class XMLController extends Controller
 
         try {
             $arquivo = $request->file('arquivo');
-            if (!is_null($this->dadosXMLService->dadosXMLPorChave(str_replace('-', '', filter_var($arquivo->getClientOriginalName(), FILTER_SANITIZE_NUMBER_INT))))) {
-                return response()->json(["info" => "XML já cadastrado"], Response::HTTP_CONFLICT);
-            }
+//            if (!is_null($this->dadosXMLService->dadosXMLPorChave(str_replace('-', '', filter_var($arquivo->getClientOriginalName(), FILTER_SANITIZE_NUMBER_INT))))) {
+//                return response()->json(["info" => "XML já cadastrado"], Response::HTTP_CONFLICT);
+//            }
             $xml = $this->XMLService->cadastro($arquivo);
             if (strtoupper($request->get('status')) == 'AUTORIZADA') {
                 $this->dadosXMLService->cadastro($arquivo, $xml->getAttribute('id'), $request->only(['cliente_cpf_cnpj', 'status']));
@@ -87,7 +88,11 @@ class XMLController extends Controller
      */
     public function show(string $chave)
     {
-        $this->dadosXMLService->consultaDadosXML($chave);
+        try {
+            return response()->json($this->dadosXMLService->consultaDadosXML($chave));
+        } catch (Exception $e) {
+            return response()->json([$e->getMessage()], $e->getCode());
+        }
     }
 
     /**

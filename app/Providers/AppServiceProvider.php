@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\DTO\XML\NFEDTO;
 use App\Models\DadosXML;
 use App\Repositories\Interfaces\Cliente\ICliente;
 use App\Repositories\Interfaces\Contador\IContador;

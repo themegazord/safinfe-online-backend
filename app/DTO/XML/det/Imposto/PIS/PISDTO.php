@@ -7,6 +7,6 @@ class PISDTO {
         private ?PISAliqDTO $PISAliq,
         private ?PISQtdeDTO $PISQtde,
         private ?PISNTDTO $PISNT,
-        private ?PISOutrDTO $PISTOutr
+        private ?PISOutrDTO $PISOutr
     ) {}
 }

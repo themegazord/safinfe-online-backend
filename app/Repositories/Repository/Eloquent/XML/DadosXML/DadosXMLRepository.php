@@ -45,4 +45,11 @@ class DadosXMLRepository implements IDadosXML
                 'chave',
             ]);
     }
+
+    public function consultaPorChave(string $chave): ?DadosXML
+    {
+        return DadosXML::query()
+            ->where('chave', $chave)
+            ->first();
+    }
 }

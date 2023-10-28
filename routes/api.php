@@ -44,6 +44,7 @@ Route::prefix('v1')->group(function () {
             Route::prefix('xml')->group(function () {
                 Route::post('cadastro', [XMLController::class, 'store'])->name('xml.store');
                 Route::get('paginacao_dadosxml/{contador_email}/{cliente_cpf_cnpj}/{perPage}',[XMLController::class, 'index'])->name('xml.index');
+                Route::get('consulta/{chave_nota}', [XMLController::class, 'show'])->name('xml.show');
             });
         });
     });

@@ -21,6 +21,6 @@ class impostoDTO {
         private ?PISSTDTO $PISST,
         private ?COFINSDTO $COFINSDTO,
         private ?COFINSSTDTO $COFINSST,
-        private ?ICMSUFDestDTO $iCMSUFDest
+        private ?ICMSUFDestDTO $ICMSUFDest
     ) {}
 }

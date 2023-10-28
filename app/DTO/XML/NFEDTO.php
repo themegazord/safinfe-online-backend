@@ -6,7 +6,7 @@ use App\DTO\XML\autXML\autXMLDTO;
 use App\DTO\XML\cana\canaDTO;
 use App\DTO\XML\cobr\cobrDTO;
 use App\DTO\XML\compra\compraDTO;
-use App\DTO\XML\det\detDTO;
+use App\DTO\XML\dest\destDTO;
 use App\DTO\XML\emit\emitDTO;
 use App\DTO\XML\entrega\entregaDTO;
 use App\DTO\XML\exporta\exportaDTO;
@@ -27,7 +27,7 @@ class NFEDTO
         private ?retiradaDTO $retirada,
         private ?entregaDTO $entrega,
         private ?autXMLDTO $autXML,
-        private ?detDTO $det,
+        private ?array $det,
         private ?totalDTO $total,
         private ?transpDTO $transp,
         private ?cobrDTO $cobr,

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DTO\XML;
+namespace App\DTO\XML\dest;
 
 use App\DTO\XML\dest\enderDestDTO;
 

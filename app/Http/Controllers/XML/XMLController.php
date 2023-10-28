@@ -86,28 +86,12 @@ class XMLController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $chave)
+    public function show(string $chave): JsonResponse
     {
         try {
             return response()->json($this->dadosXMLService->consultaDadosXML($chave));
         } catch (Exception $e) {
             return response()->json([$e->getMessage()], $e->getCode());
         }
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

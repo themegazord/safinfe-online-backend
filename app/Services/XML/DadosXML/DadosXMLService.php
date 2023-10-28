@@ -171,7 +171,7 @@ class DadosXMLService {
         return $this->dadosXMLRepository->paginacaoDadosXML($cliente->getAttribute('cliente_id'), $perPage);
     }
 
-    public function consultaDadosXML(string $chave_nota) {
+    public function consultaDadosXML(string $chave_nota): array {
         $xml = simplexml_load_string($this->dadosXMLRepository->dadosXMLPorChave($chave_nota)->xml()->first()->getAttribute('xml'))->NFe[0]->infNFe[0];
         return array_filter([
             'ide' => is_null($xml->ide[0]) ? null : ($xml->ide[0]),
@@ -235,7 +235,7 @@ class DadosXMLService {
         string $xml_id,
         string $justificativa,
         Cliente $cliente,
-        DateTime $dhEvento) {
+        DateTime $dhEvento): array {
         return [
             'xml_id' => $xml_id,
             'cliente_id' => $cliente->getAttribute('cliente_id'),

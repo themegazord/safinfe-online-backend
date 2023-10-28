@@ -86,6 +86,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
 use SimpleXMLElement;
+use ZipArchive;
 
 class DadosXMLService {
     public function __construct(
@@ -191,6 +192,16 @@ class DadosXMLService {
             'compra' => is_null($xml->compra[0]) ? null : ($xml->compra[0]),
             'cana' => is_null($xml->cana[0]) ? null : ($xml->cana[0]),
         ]);
+    }
+
+    public function downloadXML(array $xmls, string $cliente_cpf_cnpj): void {
+        $zip = new ZipArchive();
+        foreach($this->dadosXMLRepository->consultaVariosXML($xmls) as $detalhe) {
+            if ($zip->open(public_path("storage/" . $cliente_cpf_cnpj . ".zip"), ZipArchive::CREATE) === TRUE) {
+                $zip->addFromString($detalhe->getAttribute('chave') . ".xml", $detalhe->xml()->where('xml_id', $detalhe['xml_id'])->first('xml')->getAttribute('xml'));
+            }
+        }
+        $zip->close();
     }
 
     private function trataDetalhesNota(SimpleXMLElement $det): array {

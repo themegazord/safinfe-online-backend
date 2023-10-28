@@ -6,6 +6,7 @@ use App\Exceptions\Cliente\ClienteException;
 use App\Exceptions\Contador\ContadorException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CadastroXMLRequest;
+use App\Http\Requests\XML\DownloadXMLRequest;
 use App\Services\XML\DadosXML\DadosXMLService;
 use App\Services\XML\DetalhesXML\DetalhesXMLService;
 use App\Services\XML\XMLEventos\XMLEventosService;
@@ -13,6 +14,7 @@ use App\Services\XML\XMLService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use PHPUnit\Exception;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class XMLController extends Controller
@@ -93,5 +95,10 @@ class XMLController extends Controller
         } catch (Exception $e) {
             return response()->json([$e->getMessage()], $e->getCode());
         }
+    }
+
+    public function downloadXML(DownloadXMLRequest $request, string $cliente_cpf_cnpj): BinaryFileResponse {
+        $this->dadosXMLService->downloadXML($request->only('xmls')['xmls'], $cliente_cpf_cnpj);
+        return response()->download(public_path("storage/") . $cliente_cpf_cnpj . ".zip");
     }
 }

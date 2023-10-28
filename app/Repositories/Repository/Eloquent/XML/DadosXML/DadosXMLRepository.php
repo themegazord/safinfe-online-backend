@@ -53,4 +53,12 @@ class DadosXMLRepository implements IDadosXML
             ->where('chave', $chave)
             ->first();
     }
+
+    public function consultaVariosXML($xmls)
+    {
+        return DadosXML::query()
+            ->where('status', 'AUTORIZADA')
+            ->whereIn('chave', $xmls)
+            ->get();
+    }
 }

@@ -11,4 +11,5 @@ interface IDadosXML {
     public function dadosXMLPorChave(string $chave): ?DadosXML;
     public function paginacaoDadosXML(string $cliente_id, int $perPage): LengthAwarePaginator;
     public function consultaPorChave(string $chave): ?DadosXML;
+    public function consultaVariosXML($xmls);
 }

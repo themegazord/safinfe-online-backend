@@ -8,13 +8,16 @@ use App\Http\Requests\Autenticacao\Cadastro\CadastroRequest;
 use App\Http\Requests\Autenticacao\Login\LoginRequest;
 use App\Services\Autenticacao\CadastroService;
 use App\Services\Autenticacao\LoginService;
+use App\Services\Autenticacao\ResetSenhaService;
+use Illuminate\Http\Client\Response;
 use Illuminate\Http\JsonResponse;
 
 class AutenticacaoController extends Controller
 {
     public function __construct(
         private readonly CadastroService $cadastroService,
-        private readonly LoginService $loginService
+        private readonly LoginService $loginService,
+        private readonly ResetSenhaService $resetSenhaService
     ) {}
 
     public function cadastro(CadastroRequest $request): JsonResponse {
@@ -34,5 +37,9 @@ class AutenticacaoController extends Controller
         } catch (AutenticacaoException $ae) {
             return response()->json(["erro" => $ae->getMessage()], $ae->getCode());
         }
+    }
+
+    public function resetSenha(string $email) {
+        $this->resetSenhaService->consultaUsuarioEmail($email);
     }
 }

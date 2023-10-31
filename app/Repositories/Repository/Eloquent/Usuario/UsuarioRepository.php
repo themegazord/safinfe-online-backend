@@ -23,4 +23,11 @@ class UsuarioRepository implements IUsuario {
             ->where('id', $id)
             ->delete();
     }
+
+    public function adicionaHashResetaSenha(string $hash, string $email): int
+    {
+        return User::query()
+            ->where('email', $email)
+            ->update(['hash_reseta_senha' => $hash]);
+    }
 }

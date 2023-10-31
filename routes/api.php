@@ -3,6 +3,7 @@
 use App\Http\Controllers\Autenticacao\AutenticacaoController;
 use App\Http\Controllers\Cliente\ClienteController;
 use App\Http\Controllers\Contador\ContadorController;
+use App\Http\Controllers\XML\XMLController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,8 +41,20 @@ Route::prefix('v1')->group(function () {
                 Route::put('edicao/{id}', [ClienteController::class, 'update'])->name('cliente.update');
                 Route::delete('remocao/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
             });
+            Route::prefix('xml')->group(function () {
+                Route::post('cadastro', [XMLController::class, 'store'])->name('xml.store');
+                Route::get('paginacao_dadosxml/{contador_email}/{cliente_cpf_cnpj}/{perPage}',[XMLController::class, 'index'])->name('xml.index');
+                Route::get('consulta/{chave_nota}', [XMLController::class, 'show'])->name('xml.show');
+                Route::get('download/{cliente_cpf_cnpj}', [XMLController::class, 'downloadXML'])->name('xml.downloadXML');
+            });
         });
     });
     Route::prefix('externo')->group(function () {
+        Route::middleware('auth:sanctum')->group(function() {
+            Route::prefix('xml')->group(function () {
+                Route::post('cadastro', [XMLController::class, 'store'])->name('xml.store');
+                Route::get('primeiro_ultimo_xml/{cliente_cpf_cnpj}', [XMLController::class, 'primeiraEUltimasNotas'])->name('xml.primeiraEUltimasNotas');
+            });
+        });
     });
 });

@@ -40,7 +40,7 @@ class AutenticacaoController extends Controller
         }
     }
 
-    public function resetSenha(string $email): JsonResponse {
+    public function enviaEmail(string $email): JsonResponse {
         try {
             $this->resetSenhaService->enviaEmailResetSenha($email);
             return response()->json(['mensagem' => 'E-mail enviado com sucesso']);

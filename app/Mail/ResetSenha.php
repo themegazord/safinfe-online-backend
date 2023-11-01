@@ -42,7 +42,7 @@ class ResetSenha extends Mailable
             with: [
                 'usuario_nome' => $this->usuario->getAttribute('name'),
                 'frontend' => getenv('FRONTEND_URL'),
-                'emailHash' => hash('sha256', $this->usuario->getAttribute('email')),
+                'emailHash' => base64_encode($this->usuario->getAttribute('email')),
                 'hashResetSenha' => $this->usuario->getAttribute('hash_reseta_senha')
             ]
         );

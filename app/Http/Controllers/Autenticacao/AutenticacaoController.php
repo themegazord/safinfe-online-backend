@@ -9,6 +9,7 @@ use App\Http\Requests\Autenticacao\Login\LoginRequest;
 use App\Services\Autenticacao\CadastroService;
 use App\Services\Autenticacao\LoginService;
 use App\Services\Autenticacao\ResetSenhaService;
+use Exception;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\JsonResponse;
 
@@ -39,7 +40,12 @@ class AutenticacaoController extends Controller
         }
     }
 
-    public function resetSenha(string $email) {
-        $this->resetSenhaService->consultaUsuarioEmail($email);
+    public function resetSenha(string $email): JsonResponse {
+        try {
+            $this->resetSenhaService->consultaUsuarioEmail($email);
+            return response()->json(['mensagem' => 'E-mail enviado com sucesso']);
+        } catch (AutenticacaoException $ae) {
+            return response()->json(['erro' => $ae->getMessage()], $ae->getCode());
+        }
     }
 }

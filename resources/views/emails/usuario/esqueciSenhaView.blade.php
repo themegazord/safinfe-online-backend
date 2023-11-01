@@ -77,7 +77,7 @@
                 <ul class="lista-body">
                     <li class="item-lista-body">
                         Clique no botão a seguir para criar uma nova senha
-                        <a href="{{ $frontend }}/{{ $emailHash }}/{{ $hashResetSenha }}">
+                        <a href="{{ $frontend }}/resetSenha/{{ $emailHash }}/{{ $hashResetSenha }}">
                             <button>Clique aqui para redefinir sua senha</button>
                         </a>
                     </li>

@@ -21,6 +21,12 @@ class ResetSenhaService {
         Mail::to($usuario)->send(new ResetSenha($usuario));
     }
 
+    public function resetaSenha(array $dados) {
+        $usuario = $this->consultaUsuarioPeloEmail(base64_decode($dados['emailHash']));
+        if ($usuario->getAttribute('hash_reseta_senha') !== $dados['hashResetSenha']) return AutenticacaoException::hashInvalido();
+        $this->usuarioRepository->atualizaSenha(Hash::make($dados['password']), base64_decode($dados['emailHash']), $dados['hashResetSenha']);
+    }
+
     private function atualizaHashResetaSenha(string $email): void {
         $this->usuarioRepository->adicionaHashResetaSenha(hash: base64_encode($email . "|" . "sfs3st2m1s"), email: $email);
     }
@@ -29,4 +35,6 @@ class ResetSenhaService {
         $usuario = $this->usuarioRepository->consultaEmail($email);
         return !is_null($usuario) ? $usuario : AutenticacaoException::emailInexistente($email);
     }
+
+
 }

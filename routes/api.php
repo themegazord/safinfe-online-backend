@@ -23,7 +23,8 @@ Route::prefix('v1')->group(function () {
         Route::prefix('autenticacao')->group(function () {
             Route::post('cadastro', [AutenticacaoController::class, 'cadastro'])->name('autenticacao.cadastro');
             Route::post('login', [AutenticacaoController::class, 'login'])->name('autenticacao.login');
-            Route::get('solicita_reset_senha/{email}', [AutenticacaoController::class, 'enviaEmail'])->name('autenticacao.resetSenha');
+            Route::get('solicita_reset_senha/{email}', [AutenticacaoController::class, 'enviaEmail'])->name('autenticacao.enviaEmail');
+            Route::post('reset_senha', [AutenticacaoController::class, 'resetSenha'])->name('autenticacao.resetSenha');
         });
         Route::middleware('auth:sanctum')->group(function () {
             Route::prefix('contador')->group(function () {

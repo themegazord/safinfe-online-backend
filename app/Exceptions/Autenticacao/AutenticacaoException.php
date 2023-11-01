@@ -16,4 +16,8 @@ class AutenticacaoException extends Exception
     public static function senhaInvalida(): self {
         throw new self("A senha é inválida.", Response::HTTP_CONFLICT);
     }
+
+    public static function hashInvalido(): self {
+        throw new self("O hash informado não condiz com o hash gerado, por favor, repita o processo", Response::HTTP_BAD_REQUEST);
+    }
 }

@@ -14,7 +14,7 @@ class ResetSenhaService {
         private readonly IUsuario $usuarioRepository
     ) {}
 
-    public function consultaUsuarioEmail(string $email): void {
+    public function enviaEmailResetSenha(string $email): void {
         $this->consultaUsuarioPeloEmail($email);
         $this->atualizaHashResetaSenha($email);
         $usuario = $this->consultaUsuarioPeloEmail($email);

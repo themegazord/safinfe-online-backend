@@ -42,7 +42,7 @@ class AutenticacaoController extends Controller
 
     public function resetSenha(string $email): JsonResponse {
         try {
-            $this->resetSenhaService->consultaUsuarioEmail($email);
+            $this->resetSenhaService->enviaEmailResetSenha($email);
             return response()->json(['mensagem' => 'E-mail enviado com sucesso']);
         } catch (AutenticacaoException $ae) {
             return response()->json(['erro' => $ae->getMessage()], $ae->getCode());

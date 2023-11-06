@@ -57,8 +57,8 @@ class ClienteService
         foreach ($leitorFiltroExcel->preparaArrayDados('cliente') as $cliente) $this->cadastro($cliente);
     }
 
-    public function paginacao(): LengthAwarePaginator {
-        return $this->clienteRepository->paginacao();
+    public function paginacao(int $perPage, string $email): LengthAwarePaginator {
+        return $this->clienteRepository->paginacao($perPage, $this->contadorService->consultaPorEmail(base64_decode($email))->getAttribute('contador_id'));
     }
 
     public function consultaPorId(int $id): Cliente|ClienteException {

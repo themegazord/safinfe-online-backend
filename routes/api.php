@@ -30,7 +30,7 @@ Route::prefix('v1')->group(function () {
             Route::prefix('contador')->group(function () {
                 Route::post('cadastro', [ContadorController::class, 'store'])->name('contador.store');
                 Route::post('cadastroXML', [ContadorController::class, 'storeXML'])->name('contador.storeXML');
-                Route::get('paginacao', [ContadorController::class, 'index'])->name('contador.index');
+                Route::get('paginacao/{perPage}', [ContadorController::class, 'index'])->name('contador.index');
                 Route::get('consulta/{id}', [ContadorController::class, 'show'])->name('contador.show');
                 Route::put('edicao/{id}', [ContadorController::class, 'update'])->name('contador.update');
                 Route::delete('remocao/{id}', [ContadorController::class, 'destroy'])->name('contador.destroy');
@@ -38,7 +38,7 @@ Route::prefix('v1')->group(function () {
             Route::prefix('cliente')->group(function () {
                 Route::post('cadastro', [ClienteController::class, 'store'])->name('cliente.store');
                 Route::post('cadastroXML', [ClienteController::class, 'storeXML'])->name('cliente.storeXML');
-                Route::get('paginacao', [ClienteController::class, 'index'])->name('cliente.index');
+                Route::get('paginacao/{contador_cnpj}/{perPage}', [ClienteController::class, 'index'])->name('cliente.index');
                 Route::get('consulta/{id}', [ClienteController::class, 'show'])->name('cliente.show');
                 Route::put('edicao/{id}', [ClienteController::class, 'update'])->name('cliente.update');
                 Route::delete('remocao/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');

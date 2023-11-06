@@ -37,8 +37,8 @@ class ContadorService {
         }
     }
 
-    public function paginacaoContadores(): LengthAwarePaginator {
-        return $this->contadorRepository->paginacaoContadores();
+    public function paginacaoContadores(int $perPage): LengthAwarePaginator {
+        return $this->contadorRepository->paginacaoContadores($perPage);
     }
 
     /**

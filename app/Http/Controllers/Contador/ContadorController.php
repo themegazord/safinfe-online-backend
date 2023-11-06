@@ -20,9 +20,9 @@ class ContadorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): LengthAwarePaginator
+    public function index(int $perPage): LengthAwarePaginator
     {
-        return $this->contadorService->paginacaoContadores();
+        return $this->contadorService->paginacaoContadores($perPage);
     }
 
     public function store(CadastroContadorRequest $request): JsonResponse

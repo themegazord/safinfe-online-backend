@@ -2,29 +2,25 @@
 
 namespace App\Providers;
 
-use App\DTO\XML\NFEDTO;
-use App\Models\DadosXML;
 use App\Repositories\Interfaces\Cliente\ICliente;
 use App\Repositories\Interfaces\Contador\IContador;
 use App\Repositories\Interfaces\Usuario\IUsuario;
 use App\Repositories\Interfaces\XML\DadosXML\IDadosXML;
 use App\Repositories\Interfaces\XML\DetalhesXML\IDetalhesXML;
 use App\Repositories\Interfaces\XML\IXML;
-use App\Repositories\Interfaces\XML\XMLEventos\IXMLEventos;
 use App\Repositories\Repository\Eloquent\Cliente\ClienteRepository;
 use App\Repositories\Repository\Eloquent\Contador\ContadorRepository;
 use App\Repositories\Repository\Eloquent\Usuario\UsuarioRepository;
 use App\Repositories\Repository\Eloquent\XML\DadosXML\DadosXMLRepository;
 use App\Repositories\Repository\Eloquent\XML\DetalhesXML\DetalhesXMLRepository;
-use App\Repositories\Repository\Eloquent\XML\XMLEventos\XMLEventosRepository;
 use App\Repositories\Repository\Eloquent\XML\XMLRepository;
 use App\Services\Autenticacao\CadastroService;
 use App\Services\Autenticacao\LoginService;
+use App\Services\Autenticacao\ResetSenhaService;
 use App\Services\Cliente\ClienteService;
 use App\Services\Contador\ContadorService;
 use App\Services\XML\DadosXML\DadosXMLService;
 use App\Services\XML\DetalhesXML\DetalhesXMLService;
-use App\Services\XML\XMLEventos\XMLEventosService;
 use App\Services\XML\XMLService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
@@ -43,6 +39,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->scoped(LoginService::class, function (Application $app) {
             $usuarioRepository = $app->make(IUsuario::class);
             return new LoginService($usuarioRepository);
+        });
+        $this->app->scoped(ResetSenhaService::class, function (Application $app) {
+            $usuarioRepository = $app->make(IUsuario::class);
+            return new ResetSenhaService($usuarioRepository);
         });
         $this->app->scoped(ContadorService::class, function (Application $app) {
             $contadorRepository = $app->make(IContador::class);

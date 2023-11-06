@@ -15,7 +15,7 @@ class LoginService {
         $usuario = !is_null($usuario) ? $this->checaSenhaValida($credenciais, $usuario) : AutenticacaoException::emailInexistente($credenciais['email']);
         return [
             "token" => $usuario->createToken($usuario->getAttribute('email'))->plainTextToken,
-            "usuario" => $usuario->only(["id", "name", "email"])
+            "usuario" => $usuario->only(["id", "name", "email", "role"])
         ];
     }
 

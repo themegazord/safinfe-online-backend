@@ -20,7 +20,7 @@ class ContadorService {
     ) {}
 
     public function cadastro(array $contador): Contador|AutenticacaoException {
-        $usuario = $this->cadastroService->cadastro(['name' => $contador['contador_nome'], 'email' => $contador['contador_email'], 'password' => $contador['contador_senha']]);
+        $usuario = $this->cadastroService->cadastro(['name' => $contador['contador_nome'], 'email' => $contador['contador_email'], 'password' => $contador['contador_senha'], 'role' => 'CONTADOR']);
         $contador['user_id'] = $usuario->id;
         $contador['contador_senha'] = $usuario->password;
         return $this->contadorRepository->cadastro($contador);

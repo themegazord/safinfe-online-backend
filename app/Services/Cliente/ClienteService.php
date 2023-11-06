@@ -34,7 +34,8 @@ class ClienteService
         $usuarioNovo = $this->cadastroService->cadastro([
             'name' => $cliente['cliente_nome'],
             'email' => $cliente['cliente_email'],
-            'password' => $cliente['cliente_senha']
+            'password' => $cliente['cliente_senha'],
+            'role' => 'CLIENTE'
         ]);
         $cliente['user_id'] = $usuarioNovo->getAttribute('id');
         $cliente['cliente_senha'] = $usuarioNovo->getAttribute('password');

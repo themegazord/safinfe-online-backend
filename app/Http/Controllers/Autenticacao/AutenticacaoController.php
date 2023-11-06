@@ -10,8 +10,6 @@ use App\Http\Requests\ResetSenhaRequest;
 use App\Services\Autenticacao\CadastroService;
 use App\Services\Autenticacao\LoginService;
 use App\Services\Autenticacao\ResetSenhaService;
-use Exception;
-use Illuminate\Http\Client\Response;
 use Illuminate\Http\JsonResponse;
 
 class AutenticacaoController extends Controller

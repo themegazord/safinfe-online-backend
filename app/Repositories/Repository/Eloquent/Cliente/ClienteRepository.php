@@ -14,10 +14,11 @@ class ClienteRepository implements ICliente
             ->create($cliente);
     }
 
-    public function paginacao(): LengthAwarePaginator
+    public function paginacao(int $perPage, int $contador_id): LengthAwarePaginator
     {
         return Cliente::query()
-            ->paginate(10, [
+            ->where('contador_id', $contador_id)
+            ->paginate($perPage, [
                 'cliente_id',
                 'cliente_nome',
                 'cliente_cpf_cnpj',

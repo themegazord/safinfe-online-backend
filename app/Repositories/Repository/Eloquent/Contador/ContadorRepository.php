@@ -13,10 +13,10 @@ class ContadorRepository implements IContador {
             ->create($contador);
     }
 
-    public function paginacaoContadores(): LengthAwarePaginator
+    public function paginacaoContadores(int $perPage): LengthAwarePaginator
     {
         return Contador::query()
-            ->paginate(10, ['contador_id', 'contador_nome', 'contador_email']);
+            ->paginate($perPage, ['contador_id', 'contador_nome', 'contador_email']);
     }
 
     public function consultaPorId(int $id): ?Contador

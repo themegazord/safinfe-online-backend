@@ -21,9 +21,9 @@ class ClienteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(string $email, int $perPage): JsonResponse
     {
-        return response()->json($this->clienteService->paginacao());
+        return response()->json($this->clienteService->paginacao($perPage, $email));
     }
 
     /**

@@ -66,7 +66,7 @@ class ClienteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
         try {
             return response()->json(["cliente" => $this->clienteService->consultaPorId($id)]);
@@ -75,10 +75,18 @@ class ClienteController extends Controller
         }
     }
 
+    public function emitiuNota(string $id) {
+        try {
+            return response()->json(['emitiu_nota' => $this->clienteService->verificaEmissaoNotaMesAtual($id)]);
+        } catch (ClienteException $ce) {
+            return response()->json(["erro" => $ce->getMessage()], $ce->getCode());
+        }
+    }
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(EdicaoClienteRequest $request, string $id)
+    public function update(EdicaoClienteRequest $request, string $id): JsonResponse
     {
         try {
             $this->clienteService->edicaoPorId($request->only([
@@ -102,7 +110,7 @@ class ClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
         try {
             $this->clienteService->remocaoPorId($id);

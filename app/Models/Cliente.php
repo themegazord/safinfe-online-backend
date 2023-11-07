@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Cliente extends Model
 {
@@ -25,5 +26,9 @@ class Cliente extends Model
 
     public function contador(): BelongsTo {
         return $this->belongsTo(Contador::class, 'contador_id', 'contador_id');
+    }
+
+    public function dadosXML(): HasOne {
+        return $this->hasOne(DadosXML::class, 'cliente_id', 'cliente_id');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Repositories\Repository\Eloquent\Cliente;
 
 use App\Models\Cliente;
+use App\Models\XML;
 use App\Repositories\Interfaces\Cliente\ICliente;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -51,6 +52,17 @@ class ClienteRepository implements ICliente
                 'cliente_cpf_cnpj',
                 'cliente_email',
             ]);
+    }
+
+    public function xmlNotasFiscaisAutorizadas(int $id): array
+    {
+        return XML::query()
+            ->whereHas('dadosXML', function($query) {
+                $query->where('status', 'AUTORIZADA')->whereNotExists(function ($subquery) {
+                    $subquery->whereIn('status', ['INUTILIZADA', 'CANCELADA']);
+                });
+            })
+            ->get()->toArray();
     }
 
     public function edicaoPorId(array $cliente, int $id): int

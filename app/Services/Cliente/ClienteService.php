@@ -12,6 +12,7 @@ use App\Models\Cliente;
 use App\Repositories\Interfaces\Cliente\ICliente;
 use App\Services\Autenticacao\CadastroService;
 use App\Services\Contador\ContadorService;
+use DateTime;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
@@ -79,6 +80,13 @@ class ClienteService
         $this->clienteRepository->remocaoPorId($id);
         return $this->cadastroService->remocaoUsuario($usuarioId);
 
+    }
+
+    public function verificaEmissaoNotaMesAtual(string $id) {
+        $cliente = $this->consultaPorId($id);
+        $primeiroDia = new DateTime('first day of this month');
+        $ultimoDia = new DateTime('last day of this month');
+        return !empty($cliente->dadosXML()->whereBetween('dh_emissao_evento', [$primeiroDia->format('Y-m-d'), $ultimoDia->format('Y-m-d')])->get()->toArray());
     }
 
     private function validaCPFCNPJ(string $cpf_cnpj): void {

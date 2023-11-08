@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Actions\TrataDadosGeraiNotaFiscal;
 use App\Repositories\Interfaces\Cliente\ICliente;
 use App\Repositories\Interfaces\Contador\IContador;
 use App\Repositories\Interfaces\Usuario\IUsuario;
@@ -53,7 +54,8 @@ class AppServiceProvider extends ServiceProvider
             $clienteRepository = $app->make(ICliente::class);
             $cadastroService = $app->make(CadastroService::class);
             $contadorService = $app->make(ContadorService::class);
-            return new ClienteService($clienteRepository, $cadastroService, $contadorService);
+            $trataDadosGeraisNotaFiscal = $app->make(TrataDadosGeraiNotaFiscal::class);
+            return new ClienteService($clienteRepository, $cadastroService, $contadorService, $trataDadosGeraisNotaFiscal);
         });
         $this->app->scoped(XMLService::class, function (Application $app) {
             $XMLRepository = $app->make(IXML::class);
@@ -63,7 +65,8 @@ class AppServiceProvider extends ServiceProvider
             $dadosXMLRepository = $app->make(IDadosXML::class);
             $clienteService = $app->make(ClienteService::class);
             $contadorService = $app->make(ContadorService::class);
-            return new DadosXMLService($dadosXMLRepository, $clienteService, $contadorService);
+            $trataDadosGeraisNotaFiscal = $app->make(TrataDadosGeraiNotaFiscal::class);
+            return new DadosXMLService($dadosXMLRepository, $clienteService, $contadorService, $trataDadosGeraisNotaFiscal);
         });
         $this->app->scoped(DetalhesXMLService::class, function (Application $app) {
             $detalhesXMLRepository = $app->make(IDetalhesXML::class);

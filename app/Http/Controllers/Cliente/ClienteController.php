@@ -75,11 +75,19 @@ class ClienteController extends Controller
         }
     }
 
-    public function emitiuNota(string $id) {
+    public function emitiuNota(string $id): JsonResponse {
         try {
             return response()->json(['emitiu_nota' => $this->clienteService->verificaEmissaoNotaMesAtual($id)]);
         } catch (ClienteException $ce) {
             return response()->json(["erro" => $ce->getMessage()], $ce->getCode());
+        }
+    }
+
+    public function infoFin(string $id): JsonResponse {
+        try {
+            return response()->json(['infoFinanceira' => $this->clienteService->consultaInfoFinanceira($id)]);
+        } catch (\Exception $e) {
+            return response()->json(['erro' => $e->getMessage()], $e->getCode());
         }
     }
 

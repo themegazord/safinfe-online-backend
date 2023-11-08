@@ -54,11 +54,12 @@ class ClienteRepository implements ICliente
             ]);
     }
 
-    public function xmlNotasFiscaisAutorizadas(int $id): array
+    public function xmlNotasFiscaisAutorizadas(int $id, \DateTime $data_inicial, \DateTime $data_final): array
     {
         return XML::query()
-            ->whereHas('dadosXML', function($query) {
-                $query->where('status', 'AUTORIZADA')->whereNotExists(function ($subquery) {
+            ->whereHas('dadosXML', function($query) use ($data_inicial, $data_final) {
+                $query->whereBetween('dh_emissao_evento', [$data_inicial->format('Y-m-d'), $data_final->format('Y-m-d')])
+                    ->where('status', 'AUTORIZADA')->whereNotExists(function ($subquery) {
                     $subquery->whereIn('status', ['INUTILIZADA', 'CANCELADA']);
                 });
             })

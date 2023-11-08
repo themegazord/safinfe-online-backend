@@ -3,6 +3,7 @@
 namespace App\Services\Cliente;
 
 use App\Actions\LeitorFiltroExcel;
+use App\Actions\TrataDadosGeraiNotaFiscal;
 use App\Actions\ValidadorCNPJ;
 use App\Actions\ValidadorCPF;
 use App\Exceptions\Cliente\ClienteException;
@@ -22,7 +23,8 @@ class ClienteService
     public function __construct(
         private readonly ICliente $clienteRepository,
         private readonly CadastroService $cadastroService,
-        private readonly ContadorService $contadorService
+        private readonly ContadorService $contadorService,
+        private readonly TrataDadosGeraiNotaFiscal $dadosGeraiNotaFiscal
     ) {}
 
     /**
@@ -87,6 +89,29 @@ class ClienteService
         $primeiroDia = new DateTime('first day of this month');
         $ultimoDia = new DateTime('last day of this month');
         return !empty($cliente->dadosXML()->whereBetween('dh_emissao_evento', [$primeiroDia->format('Y-m-d'), $ultimoDia->format('Y-m-d')])->get()->toArray());
+    }
+
+    public function consultaInfoFinanceira(string $id): array {
+        $primeiroDia = new DateTime('first day of this month');
+        $ultimoDia = new DateTime('last day of this month');
+        $info = [
+            'totalNotas' => 0,
+            'totalICMS' => 0,
+            'totalST' => 0,
+            'vPIS' => 0,
+            'vCOFINS' => 0,
+            'valorApxImpostosFederais' => 0,
+        ];
+        $xmls = $this->clienteRepository->xmlNotasFiscaisAutorizadas($id, $primeiroDia, $ultimoDia);
+        foreach ($xmls as $xml) {
+            $info['totalNotas'] += $this->dadosGeraiNotaFiscal->consultaDadosXML(simplexml_load_string($xml['xml'])->NFe[0]->infNFe[0])['total']->ICMSTot[0]->vNF[0];
+            $info['totalICMS'] += $this->dadosGeraiNotaFiscal->consultaDadosXML(simplexml_load_string($xml['xml'])->NFe[0]->infNFe[0])['total']->ICMSTot[0]->vICMS[0];
+            $info['totalST'] += $this->dadosGeraiNotaFiscal->consultaDadosXML(simplexml_load_string($xml['xml'])->NFe[0]->infNFe[0])['total']->ICMSTot[0]->vST[0];
+            $info['vPIS'] += $this->dadosGeraiNotaFiscal->consultaDadosXML(simplexml_load_string($xml['xml'])->NFe[0]->infNFe[0])['total']->ICMSTot[0]->vPIS[0];
+            $info['vCOFINS'] += $this->dadosGeraiNotaFiscal->consultaDadosXML(simplexml_load_string($xml['xml'])->NFe[0]->infNFe[0])['total']->ICMSTot[0]->vCOFINS[0];
+            $info['valorApxImpostosFederais'] += $this->dadosGeraiNotaFiscal->consultaDadosXML(simplexml_load_string($xml['xml'])->NFe[0]->infNFe[0])['total']->ICMSTot[0]->vTotTrib[0];
+        }
+        return $info;
     }
 
     private function validaCPFCNPJ(string $cpf_cnpj): void {

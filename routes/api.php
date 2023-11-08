@@ -41,6 +41,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('paginacao/{contador_cnpj}/{perPage}', [ClienteController::class, 'index'])->name('cliente.index');
                 Route::get('consulta/{id}', [ClienteController::class, 'show'])->name('cliente.show');
                 Route::get('emitiu_nota/{id}', [ClienteController::class, 'emitiuNota'])->name('cliente.emitiuNota');
+                Route::get('info_fin/{id}', [ClienteController::class, 'infoFin'])->name('cliente.infoFin');
                 Route::put('edicao/{id}', [ClienteController::class, 'update'])->name('cliente.update');
                 Route::delete('remocao/{id}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
             });

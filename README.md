@@ -28,3 +28,8 @@
     - [Consulta de clientes](documentacao/cliente/DocConsultaCliente.md)
     - [Edicao de cliente](documentacao/cliente/DocEdicaoCliente.md)
     - [Remocao de cliente](documentacao/cliente/DocRemocaoCliente.md)
+  - XML
+    - [Cadastro de XML](documentacao/xml/DocCadastroXML.md)
+    - [Paginação dos XML de um determinado cliente](documentacao/xml/DocPaginacaoXML.md)
+    - [Consulta geral de uma determinada nota fiscal](documentacao/xml/DocConsultaXML.md)
+    - [Download dos XML's](documentacao/xml/DocDownloadXML.md)

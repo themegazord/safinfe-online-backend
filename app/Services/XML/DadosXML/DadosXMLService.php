@@ -3,78 +3,6 @@
 namespace App\Services\XML\DadosXML;
 
 use App\Actions\TrataDadosGeraiNotaFiscal;
-use App\DTO\XML\autXML\autXMLDTO;
-use App\DTO\XML\dest\enderDestDTO;
-use App\DTO\XML\dest\destDTO;
-use App\DTO\XML\det\detDTO;
-use App\DTO\XML\det\Imposto\COFINS\COFINSAliqDTO;
-use App\DTO\XML\det\Imposto\COFINS\COFINSDTO;
-use App\DTO\XML\det\Imposto\COFINS\COFINSNTDTO;
-use App\DTO\XML\det\Imposto\COFINS\COFINSOutrDTO;
-use App\DTO\XML\det\Imposto\COFINS\COFINSQtdeDTO;
-use App\DTO\XML\det\Imposto\COFINSST\COFINSSTDTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS00DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS02DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS10DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS15DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS20DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS30DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS40DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS51DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS53DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS60DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS61DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS70DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMS90DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMSPartDTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMSSN101DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMSSN102DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMSSN201DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMSSN202DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMSSN500DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMSSN900DTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMSSTDTO;
-use App\DTO\XML\det\Imposto\ICMS\ICMSDTO;
-use App\DTO\XML\det\Imposto\ICMSUFDest\ICMSUFDestDTO;
-use App\DTO\XML\det\Imposto\II\IIDTO;
-use App\DTO\XML\det\Imposto\impostoDTO;
-use App\DTO\XML\det\Imposto\ISSQN\ISSQNDTO;
-use App\DTO\XML\det\Imposto\PIS\PISAliqDTO;
-use App\DTO\XML\det\Imposto\PIS\PISDTO;
-use App\DTO\XML\det\Imposto\PIS\PISNTDTO;
-use App\DTO\XML\det\Imposto\PIS\PISOutrDTO;
-use App\DTO\XML\det\Imposto\PIS\PISQtdeDTO;
-use App\DTO\XML\det\Imposto\PISST\PISSTDTO;
-use App\DTO\XML\det\ImpostoDevolucao\impostoDevolDTO;
-use App\DTO\XML\det\ImpostoDevolucao\IPIDTO;
-use App\DTO\XML\det\ObservacaoItem\Contribuinte\obsContDTO;
-use App\DTO\XML\det\ObservacaoItem\Fisco\obsFiscoDTO;
-use App\DTO\XML\det\ObservacaoItem\obsItemDTO;
-use App\DTO\XML\det\Produto\Armamento\armaDTO;
-use App\DTO\XML\det\Produto\Combutivel\CIDE\CIDEDTO;
-use App\DTO\XML\det\Produto\Combutivel\combDTO;
-use App\DTO\XML\det\Produto\Combutivel\Encerrante\encerranteDTO;
-use App\DTO\XML\det\Produto\Combutivel\Origem\origCombDTO;
-use App\DTO\XML\det\Produto\DE\detExportDTO;
-use App\DTO\XML\det\Produto\DE\ExportacaoIndireta\exportIndDTO;
-use App\DTO\XML\det\Produto\DI\Adicional\ProdutoDIAdiDTO;
-use App\DTO\XML\det\Produto\DI\ProdutoDIDTO;
-use App\DTO\XML\det\Produto\InformacaoProduto\infProdEmbDTO;
-use App\DTO\XML\det\Produto\InformacaoProduto\infProdNFFDTO;
-use App\DTO\XML\det\Produto\Medicamento\medDTO;
-use App\DTO\XML\det\Produto\prodDTO;
-use App\DTO\XML\det\Produto\Rastro\rastroDTO;
-use App\DTO\XML\det\Produto\Veiculo\veicProdDTO;
-use App\DTO\XML\emit\emitDTO;
-use App\DTO\XML\emit\enderEmitDTO;
-use App\DTO\XML\entrega\entregaDTO;
-use App\DTO\XML\ide\ideDTO;
-use App\DTO\XML\ide\NFref\NFrefDTO;
-use App\DTO\XML\ide\NFref\refECF\refECFDTO;
-use App\DTO\XML\ide\NFref\refNF\refNFDTO;
-use App\DTO\XML\ide\NFref\refNFP\refNFPDTO;
-use App\DTO\XML\NFEDTO;
-use App\DTO\XML\retirada\retiradaDTO;
 use App\Exceptions\Cliente\ClienteException;
 use App\Exceptions\Contador\ContadorException;
 use App\Models\Cliente;
@@ -86,7 +14,6 @@ use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
-use SimpleXMLElement;
 use ZipArchive;
 
 class DadosXMLService {
@@ -175,6 +102,7 @@ class DadosXMLService {
     }
 
     public function consultaDadosXML(string $chave_nota): array {
+        // TODO inserir validação para quando não houver chave cadastrada
         $xml = simplexml_load_string($this->dadosXMLRepository->dadosXMLPorChave($chave_nota)->xml()->first()->getAttribute('xml'))->NFe[0]->infNFe[0];
         return $this->dadosGeraiNotaFiscal->consultaDadosXML($xml);
     }

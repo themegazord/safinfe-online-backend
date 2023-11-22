@@ -16,7 +16,6 @@ Rota usada para consultar a paginação de todos os contadores cadastrados dentr
 
 ## Exemplo de requisição
 
-
 ```text
     Requisição = /api/v1/interno/contador/paginacao?page=1
 ```

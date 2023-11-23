@@ -13,4 +13,3 @@ Rota usada para consultar um XML especifico dentro do sistema.
 | Parametro        | Tipo   | Tamanho | Descrição           | Obrigatório? |
 |------------------|--------|---------|---------------------|--------------|
 | cliente_cpf_cnpj | string | 14      | CPF/CNPJ do cliente | Sim          |
-

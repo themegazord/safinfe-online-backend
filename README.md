@@ -26,6 +26,8 @@
     - [Cadastro em massa de clientes](documentacao/cliente/DocCadastroEmMassaCliente.md)
     - [Paginação de clientes](documentacao/cliente/DocPaginacaoCliente.md)
     - [Consulta de clientes](documentacao/cliente/DocConsultaCliente.md)
+    - [Verificação de emissão de nota fiscal no mês vigente](documentacao/cliente/DocEmitiuNota.md)
+    - [Informações financeiras do cliente no mês vigente](documentacao/cliente/DocInfoFinanceira.md)
     - [Edicao de cliente](documentacao/cliente/DocEdicaoCliente.md)
     - [Remocao de cliente](documentacao/cliente/DocRemocaoCliente.md)
   - XML

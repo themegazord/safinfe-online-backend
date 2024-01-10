@@ -25,6 +25,14 @@ class ContadorController extends Controller
         return $this->contadorService->paginacaoContadores($perPage);
     }
 
+    public function listagemClientes(string $email): JsonResponse {
+        try {
+            return response()->json(['clientes' => $this->contadorService->listagem($email)]);
+        } catch (ContadorException $ce) {
+            return response()->json(['erro' => $ce->getMessage()], $ce->getCode());
+        }
+    }
+
     public function store(CadastroContadorRequest $request): JsonResponse
     {
         try {

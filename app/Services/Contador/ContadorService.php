@@ -10,7 +10,6 @@ use App\Repositories\Interfaces\Contador\IContador;
 use App\Services\Autenticacao\CadastroService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Reader\Exception;
 
 class ContadorService {
@@ -39,6 +38,10 @@ class ContadorService {
 
     public function paginacaoContadores(int $perPage): LengthAwarePaginator {
         return $this->contadorRepository->paginacaoContadores($perPage);
+    }
+
+    public function listagem(string $email): array|ContadorException {
+        return $this->consultaPorEmail($email)->cliente()->get(['cliente_id', 'cliente_nome', 'cliente_cpf_cnpj'])->toArray();
     }
 
     /**

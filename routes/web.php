@@ -13,9 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('emails.usuario.esqueciSenhaView', [
-        'usuario_nome' => 'Gustavo de Camargo Campos',
-        'frontend' => getenv('FRONTEND_URL')
-    ]);
-});
+Route::get('/', \App\Livewire\Views\Login::class);

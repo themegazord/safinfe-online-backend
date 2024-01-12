@@ -1,0 +1,15 @@
+/* Fontes */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* Cores */
+@import url("./cores.css");
+
+/* CSS Componentes */
+@import url("./componentes/navbar/styles.css");
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}

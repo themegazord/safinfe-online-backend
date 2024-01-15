@@ -1,0 +1,690 @@
+main {
+    background: var(--darkblue);
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 0px 100px 100px;
+}
+
+.form-login {
+    margin: 4rem 0;
+    width: 65%;
+}
+
+@media screen and (max-width: 2560px) {
+    .form-login {
+        display: flex;
+        padding: calc(4.21875rem * 2560 / 1440) calc(5.3125rem * 2560 / 1440)
+            calc(4.53125rem * 2560 / 1440) calc(5.3125rem * 2560 / 1440);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        border-radius: 15px;
+        gap: calc(1rem * 2560 / 1440);
+    }
+
+    .titulo-subtitulo {
+        color: var(--darkblue);
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
+    .titulo-subtitulo h1 {
+        font-size: calc(1.75rem * 2560 / 1440);
+    }
+
+    .titulo-subtitulo h3 {
+        font-size: calc(1rem * 2560 / 1440);
+    }
+
+    .opcoes-form-login {
+        width: calc(50% * 2560 / 2560);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .esqueceuSenha {
+        color: #278fcb;
+        font-family: DM Sans;
+        font-size: calc(1rem * 2560 / 1440);
+        cursor: pointer;
+    }
+
+    .botaoLogin {
+        color: #fff;
+        font-family: DM Sans;
+        font-size: calc(1.125rem * 2560 / 1440);
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.72px;
+
+        border-radius: 8px;
+        background: var(--darkblue);
+
+        padding: calc(.75rem * 2560 / 1440) calc(2rem * 2560 / 1440);
+    }
+    .grupo-input-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        padding-top: calc(1rem * 2560 / 1440);
+        gap: calc(.5rem * 2560 / 1440);
+        width: 50%
+    }
+
+    .label-input-login {
+        font-size: calc(1rem * 2560 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+    }
+
+    .input-input-login {
+        font-size: calc(1rem * 2560 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+
+        border-radius: 6px;
+        border: 1px solid #b1b1b6;
+    }
+
+    .grupo-input-checkbox-login {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: calc(1.8125rem * 2560 / 1440);
+    }
+
+    .grupo-input-checkbox-login input{
+        width: calc(1rem * 2560 / 1440);
+    }
+}
+@media screen and (max-width: 1920px) {
+    .form-login {
+        display: flex;
+        padding: calc(4.21875rem * 1920 / 1440) calc(5.3125rem * 1920 / 1440)
+            calc(4.53125rem * 1920 / 1440) calc(5.3125rem * 1920 / 1440);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        border-radius: 15px;
+        gap: calc(1rem * 1920 / 1440);
+    }
+
+    .titulo-subtitulo {
+        color: var(--darkblue);
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        width: calc(50% * 1920 / 1440);
+    }
+
+    .titulo-subtitulo h1 {
+        font-size: calc(1.75rem * 1920 / 1440);
+    }
+
+    .titulo-subtitulo h3 {
+        font-size: calc(1rem * 1920 / 1440);
+    }
+
+    .opcoes-form-login {
+        width: calc(50% * 1920 / 1440);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .esqueceuSenha {
+        color: #278fcb;
+        font-family: DM Sans;
+        font-size: calc(1rem * 1920 / 1440);
+        cursor: pointer;
+    }
+
+    .botaoLogin {
+        color: #fff;
+        font-family: DM Sans;
+        font-size: calc(1.125rem * 1920 / 1440);
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.72px;
+
+        border-radius: 8px;
+        background: var(--darkblue);
+
+        padding: calc(.75rem * 1920 / 1440) calc(2rem * 1920 / 1440);
+    }
+
+    .grupo-input-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        padding-top: calc(1rem * 1920 / 1440);
+        gap: calc(.5rem * 1920 / 1440);
+        width: calc(50% * 1920 / 1440);
+    }
+
+    .label-input-login {
+        font-size: calc(1rem * 1920 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+    }
+
+    .input-input-login {
+        font-size: calc(1rem * 1920 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+
+        border-radius: 6px;
+        border: 1px solid #b1b1b6;
+    }
+
+    .grupo-input-checkbox-login {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: calc(1.8125rem * 1920 / 1440);
+    }
+
+    .grupo-input-checkbox-login input{
+        width: calc(1rem * 1920 / 1440);
+    }
+}
+@media screen and (max-width: 1600px) {
+    .form-login {
+        display: flex;
+        padding: calc(4.21875rem * 1600 / 1440) calc(5.3125rem * 1600 / 1440)
+            calc(4.53125rem * 1600 / 1440) calc(5.3125rem * 1600 / 1440);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        border-radius: 15px;
+        gap: calc(1rem * 1600 / 1440);
+    }
+
+    .titulo-subtitulo {
+        color: var(--darkblue);
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        width: calc(50% * 1600 / 1440);
+    }
+
+    .titulo-subtitulo h1 {
+        font-size: calc(1.75rem * 1600 / 1440);
+    }
+
+    .titulo-subtitulo h3 {
+        font-size: calc(1rem * 1600 / 1440);
+    }
+
+    .opcoes-form-login {
+        width: calc(50% * 1600 / 1440);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .esqueceuSenha {
+        color: #278fcb;
+        font-family: DM Sans;
+        font-size: calc(1rem * 1600 / 1440);
+        cursor: pointer;
+    }
+
+    .botaoLogin {
+        color: #fff;
+        font-family: DM Sans;
+        font-size: calc(1.125rem * 1600 / 1440);
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.72px;
+
+        border-radius: 8px;
+        background: var(--darkblue);
+
+        padding: calc(.75rem * 1600 / 1440) calc(2rem * 1600 / 1440);
+    }
+    .grupo-input-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        padding-top: calc(1rem * 1600 / 1440);
+        gap: calc(.5rem * 1600 / 1440);
+        width: calc(50% * 1600 / 1440);
+    }
+
+    .label-input-login {
+        font-size: calc(1rem * 1600 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+    }
+
+    .input-input-login {
+        font-size: calc(1rem * 1600 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+
+        border-radius: 6px;
+        border: 1px solid #b1b1b6;
+    }
+
+    .grupo-input-checkbox-login {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: calc(1.8125rem * 1600 / 1440);
+    }
+
+    .grupo-input-checkbox-login input{
+        width: calc(1rem * 1600 / 1440);
+    }
+}
+@media screen and (max-width: 1440px) {
+    .form-login {
+        display: flex;
+        padding: calc(4.21875rem * 1440 / 1440) calc(5.3125rem * 1440 / 1440)
+            calc(4.53125rem * 1440 / 1440) calc(5.3125rem * 1440 / 1440);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        border-radius: 15px;
+        gap: calc(1rem * 1440 / 1440);
+    }
+
+    .titulo-subtitulo {
+        color: var(--darkblue);
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        width: calc(50% * 1440 / 1440);
+    }
+
+    .titulo-subtitulo h1 {
+        font-size: calc(1.75rem * 1440 / 1440);
+    }
+
+    .titulo-subtitulo h3 {
+        font-size: calc(1rem * 1440 / 1440);
+    }
+
+    .opcoes-form-login {
+        width: calc(50% * 1440 / 1440);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .esqueceuSenha {
+        color: #278fcb;
+        font-family: DM Sans;
+        font-size: calc(1rem * 1440 / 1440);
+        cursor: pointer;
+    }
+
+    .botaoLogin {
+        color: #fff;
+        font-family: DM Sans;
+        font-size: calc(1.125rem * 1440 / 1440);
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.72px;
+
+        border-radius: 8px;
+        background: var(--darkblue);
+
+        padding: calc(.75rem * 1440 / 1440) calc(2rem * 1440 / 1440);
+    }
+    .grupo-input-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        padding-top: calc(1rem * 1440 / 1440);
+        gap: calc(.5rem * 1440 / 1440);
+        width: calc(50% * 1440 / 1440);
+    }
+
+    .label-input-login {
+        font-size: calc(1rem * 1440 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+    }
+
+    .input-input-login {
+        font-size: calc(1rem * 1440 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+
+        border-radius: 6px;
+        border: 1px solid #b1b1b6;
+    }
+
+    .grupo-input-checkbox-login {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: calc(1.8125rem * 1440 / 1440);
+    }
+
+    .grupo-input-checkbox-login input{
+        width: calc(1rem * 1440 / 1440);
+    }
+}
+@media screen and (max-width: 1366px) {
+    .form-login {
+        display: flex;
+        padding: calc(4.21875rem * 1366 / 1440) calc(5.3125rem * 1366 / 1440)
+            calc(4.53125rem * 1366 / 1440) calc(5.3125rem * 1366 / 1440);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        border-radius: 15px;
+        gap: calc(1rem * 1366 / 1440);
+    }
+
+    .titulo-subtitulo {
+        color: var(--darkblue);
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        width: calc(50% * 1366 / 1440);
+    }
+
+    .titulo-subtitulo h1 {
+        font-size: calc(1.75rem * 1366 / 1440);
+    }
+
+    .titulo-subtitulo h3 {
+        font-size: calc(1rem * 1366 / 1440);
+    }
+
+    .opcoes-form-login {
+        width: calc(50% * 1366 / 1440);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .esqueceuSenha {
+        color: #278fcb;
+        font-family: DM Sans;
+        font-size: calc(1rem * 1366 / 1440);
+        cursor: pointer;
+    }
+
+    .botaoLogin {
+        color: #fff;
+        font-family: DM Sans;
+        font-size: calc(1.125rem * 1366 / 1440);
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.72px;
+
+        border-radius: 8px;
+        background: var(--darkblue);
+
+        padding: calc(.75rem * 1366 / 1440) calc(2rem * 1366 / 1440);
+    }
+    .grupo-input-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        padding-top: calc(1rem * 1366 / 1440);
+        gap: calc(.5rem * 1366 / 1440);
+        width: calc(50% * 1366 / 1440);
+    }
+
+    .label-input-login {
+        font-size: calc(1rem * 1366 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+    }
+
+    .input-input-login {
+        font-size: calc(1rem * 1366 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+
+        border-radius: 6px;
+        border: 1px solid #b1b1b6;
+    }
+
+    .grupo-input-checkbox-login {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: calc(1.8125rem * 1366 / 1440);
+    }
+
+    .grupo-input-checkbox-login input{
+        width: calc(1rem * 1366 / 1440);
+    }
+}
+@media screen and (max-width: 1280px) {
+    .form-login {
+        display: flex;
+        padding: calc(4.21875rem * 1280 / 1440) calc(5.3125rem * 1280 / 1440)
+            calc(4.53125rem * 1280 / 1440) calc(5.3125rem * 1280 / 1440);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        border-radius: 15px;
+        gap: calc(1rem * 1280 / 1440);
+    }
+
+    .titulo-subtitulo {
+        color: var(--darkblue);
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        width: calc(50% * 1280 / 1440);
+    }
+
+    .titulo-subtitulo h1 {
+        font-size: calc(1.75rem * 1280 / 1440);
+    }
+
+    .titulo-subtitulo h3 {
+        font-size: calc(1rem * 1280 / 1440);
+    }
+
+    .opcoes-form-login {
+        width: calc(50% * 1280 / 1440);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .esqueceuSenha {
+        color: #278fcb;
+        font-family: DM Sans;
+        font-size: calc(1rem * 1280 / 1440);
+        cursor: pointer;
+    }
+
+    .botaoLogin {
+        color: #fff;
+        font-family: DM Sans;
+        font-size: calc(1.125rem * 1280 / 1440);
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.72px;
+
+        border-radius: 8px;
+        background: var(--darkblue);
+
+        padding: calc(.75rem * 1280 / 1440) calc(2rem * 1280 / 1440);
+    }
+    .grupo-input-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        padding-top: calc(1rem * 1280 / 1440);
+        gap: calc(.5rem * 1280 / 1440);
+        width: calc(50% * 1280 / 1440);
+    }
+
+    .label-input-login {
+        font-size: calc(1rem * 1280 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+    }
+
+    .input-input-login {
+        font-size: calc(1rem * 1280 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+
+        border-radius: 6px;
+        border: 1px solid #b1b1b6;
+    }
+
+    .grupo-input-checkbox-login {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: calc(1.8125rem * 1280 / 1440);
+    }
+
+    .grupo-input-checkbox-login input{
+        width: calc(1rem * 1280 / 1440);
+    }
+}
+@media screen and (max-width: 1024px) {
+    .form-login {
+        display: flex;
+        padding: calc(4.21875rem * 1024 / 1440) calc(5.3125rem * 1024 / 1440)
+            calc(4.53125rem * 1024 / 1440) calc(5.3125rem * 1024 / 1440);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        border-radius: 15px;
+        gap: calc(1rem * 1024 / 1440);
+    }
+
+    .titulo-subtitulo {
+        color: var(--darkblue);
+        font-family: DM Sans;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        width: calc(50% * 1024 / 1440);
+    }
+
+    .titulo-subtitulo h1 {
+        font-size: calc(1.75rem * 1024 / 1440);
+    }
+
+    .titulo-subtitulo h3 {
+        font-size: calc(1rem * 1024 / 1440);
+    }
+
+    .opcoes-form-login {
+        width: calc(50% * 1024 / 1440);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .esqueceuSenha {
+        color: #278fcb;
+        font-family: DM Sans;
+        font-size: calc(1rem * 1024 / 1440);
+        cursor: pointer;
+    }
+
+    .botaoLogin {
+        color: #fff;
+        font-family: DM Sans;
+        font-size: calc(1.125rem * 1024 / 1440);
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.72px;
+
+        border-radius: 8px;
+        background: var(--darkblue);
+
+        padding: calc(.75rem * 1024 / 1440) calc(2rem * 1024 / 1440);
+    }
+    .grupo-input-login {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        padding-top: calc(1rem * 1024 / 1440);
+        gap: calc(.5rem * 1024 / 1440);
+        width: calc(50% * 1024 / 1440);
+    }
+
+    .label-input-login {
+        font-size: calc(1rem * 1024 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+    }
+
+    .input-input-login {
+        font-size: calc(1rem * 1024 / 1440);
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        font-family: DM Sans;
+
+        border-radius: 6px;
+        border: 1px solid #b1b1b6;
+    }
+
+    .grupo-input-checkbox-login {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: calc(1.8125rem * 1024 / 1440);
+    }
+
+    .grupo-input-checkbox-login input{
+        width: calc(1rem * 1024 / 1440);
+    }
+}
+
+

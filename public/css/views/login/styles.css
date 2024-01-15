@@ -33,6 +33,7 @@ main {
         font-style: normal;
         font-weight: 700;
         line-height: normal;
+        width: 50%;
     }
 
     .titulo-subtitulo h1 {
@@ -686,5 +687,4 @@ main {
         width: calc(1rem * 1024 / 1440);
     }
 }
-
 

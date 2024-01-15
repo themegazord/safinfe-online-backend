@@ -7,7 +7,6 @@
 
 /* CSS Componentes */
 @import url("./componentes/navbar/styles.css");
-@import url("./componentes/formularios/input/styles.css");
 
 /* CSS Views */
 @import url("./views/login/styles.css");

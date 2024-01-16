@@ -14,3 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', \App\Livewire\Views\Login::class);
+Route::get('/contato', \App\Livewire\Views\Contato::class);

@@ -10,6 +10,7 @@
 
 /* CSS Views */
 @import url("./views/login/styles.css");
+@import url("./views/contato/styles.css");
 
 body {
     margin: 0;

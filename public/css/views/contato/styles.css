@@ -1,0 +1,262 @@
+.form-contato {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 15px;
+    gap: 0.5rem;
+}
+
+.titulo-subtitulo-contato {
+    color: var(--darkblue);
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.grupo-input-contato {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    gap: 0.5rem;
+}
+
+.input-label-contato,
+.input-input-contato {
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    font-family: DM Sans;
+}
+
+.input-input-contato {
+    border: 1px solid #acacad;
+    border-radius: 5px;
+}
+
+.container-botao-enviar-contato {
+    width: 55%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.botao-enviar-contato {
+    border: none;
+    border-radius: 8px;
+    background-color: #000511;
+    color: white;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+@media screen and (max-width: 2560px) {
+    .titulo-subtitulo-contato {
+        margin-top: calc(2rem * 2560 / 1440);
+    }
+
+    .titulo-subtitulo-contato h1 {
+        font-size: calc(1.75rem * 2560 / 1440);
+    }
+
+    .titulo-subtitulo-contato h3 {
+        font-size: calc(1rem * 2560 / 1440);
+    }
+
+    .input-input-contato,
+    .input-label-contato {
+        font-size: calc(1rem * 2560 / 1440);
+    }
+
+    .input-input-contato {
+        padding: calc(0.5rem * 2560 / 1440);
+    }
+
+    .botao-enviar-contato {
+        width: calc(8.3125rem * 2560 / 1440);
+        height: calc(3rem * 2560 / 1440);
+        font-size: calc(1.125rem * 2560 / 1440);
+        margin: calc(2rem * 2560 / 1440) 0;
+    }
+}
+@media screen and (max-width: 1920px) {
+    .titulo-subtitulo-contato {
+        margin-top: calc(2rem * 1920 / 1440);
+    }
+
+    .titulo-subtitulo-contato h1 {
+        font-size: calc(1.75rem * 1920 / 1440);
+    }
+
+    .titulo-subtitulo-contato h3 {
+        font-size: calc(1rem * 1920 / 1440);
+    }
+
+    .input-input-contato,
+    .input-label-contato {
+        font-size: calc(1rem * 1920 / 1440);
+    }
+
+    .input-input-contato {
+        padding: calc(0.5rem * 1920 / 1440);
+    }
+
+    .botao-enviar-contato {
+        width: calc(8.3125rem * 1920 / 1440);
+        height: calc(3rem * 1920 / 1440);
+        font-size: calc(1.125rem * 1920 / 1440);
+        margin: calc(2rem * 1920 / 1440) 0;
+    }
+}
+@media screen and (max-width: 1600px) {
+    .titulo-subtitulo-contato {
+        margin-top: calc(2rem * 1600 / 1440);
+    }
+
+    .titulo-subtitulo-contato h1 {
+        font-size: calc(1.75rem * 1600 / 1440);
+    }
+
+    .titulo-subtitulo-contato h3 {
+        font-size: calc(1rem * 1600 / 1440);
+    }
+
+    .input-input-contato,
+    .input-label-contato {
+        font-size: calc(1rem * 1600 / 1440);
+    }
+
+    .input-input-contato {
+        padding: calc(0.5rem * 1600 / 1440);
+    }
+
+    .botao-enviar-contato {
+        width: calc(8.3125rem * 1600 / 1440);
+        height: calc(3rem * 1600 / 1440);
+        font-size: calc(1.125rem * 1600 / 1440);
+        margin: calc(2rem * 1600 / 1440) 0;
+    }
+}
+@media screen and (max-width: 1440px) {
+    .titulo-subtitulo-contato {
+        margin-top: calc(2rem * 1440 / 1440);
+    }
+
+    .titulo-subtitulo-contato h1 {
+        font-size: calc(1.75rem * 1440 / 1440);
+    }
+
+    .titulo-subtitulo-contato h3 {
+        font-size: calc(1rem * 1440 / 1440);
+    }
+
+    .input-input-contato,
+    .input-label-contato {
+        font-size: calc(1rem * 1440 / 1440);
+    }
+
+    .input-input-contato {
+        padding: calc(0.5rem * 1440 / 1440);
+    }
+
+    .botao-enviar-contato {
+        width: calc(8.3125rem * 1440 / 1440);
+        height: calc(3rem * 1440 / 1440);
+        font-size: calc(1.125rem * 1440 / 1440);
+        margin: calc(2rem * 1440 / 1440) 0;
+    }
+}
+@media screen and (max-width: 1366px) {
+    .titulo-subtitulo-contato {
+        margin-top: calc(2rem * 1366 / 1440);
+    }
+
+    .titulo-subtitulo-contato h1 {
+        font-size: calc(1.75rem * 1366 / 1440);
+    }
+
+    .titulo-subtitulo-contato h3 {
+        font-size: calc(1rem * 1366 / 1440);
+    }
+
+    .input-input-contato,
+    .input-label-contato {
+        font-size: calc(1rem * 1366 / 1440);
+    }
+
+    .input-input-contato {
+        padding: calc(0.5rem * 1366 / 1440);
+    }
+
+    .botao-enviar-contato {
+        width: calc(8.3125rem * 1366 / 1440);
+        height: calc(3rem * 1366 / 1440);
+        font-size: calc(1.125rem * 1366 / 1440);
+        margin: calc(2rem * 1366 / 1440) 0;
+    }
+}
+@media screen and (max-width: 1280px) {
+    .titulo-subtitulo-contato {
+        margin-top: calc(2rem * 1280 / 1440);
+    }
+
+    .titulo-subtitulo-contato h1 {
+        font-size: calc(1.75rem * 1280 / 1440);
+    }
+
+    .titulo-subtitulo-contato h3 {
+        font-size: calc(1rem * 1280 / 1440);
+    }
+
+    .input-input-contato,
+    .input-label-contato {
+        font-size: calc(1rem * 1280 / 1440);
+    }
+
+    .input-input-contato {
+        padding: calc(0.5rem * 1280 / 1440);
+    }
+
+    .botao-enviar-contato {
+        width: calc(8.3125rem * 1280 / 1440);
+        height: calc(3rem * 1280 / 1440);
+        font-size: calc(1.125rem * 1280 / 1440);
+        margin: calc(2rem * 1280 / 1440) 0;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .titulo-subtitulo-contato {
+        margin-top: calc(2rem * 1024 / 1440);
+    }
+
+    .titulo-subtitulo-contato h1 {
+        font-size: calc(1.75rem * 1024 / 1440);
+    }
+
+    .titulo-subtitulo-contato h3 {
+        font-size: calc(1rem * 1024 / 1440);
+    }
+
+    .input-input-contato,
+    .input-label-contato {
+        font-size: calc(1rem * 1024 / 1440);
+    }
+
+    .input-input-contato {
+        padding: calc(0.5rem * 1024 / 1440);
+    }
+
+    .botao-enviar-contato {
+        width: calc(8.3125rem * 1024 / 1440);
+        height: calc(3rem * 1024 / 1440);
+        font-size: calc(1.125rem * 1024 / 1440);
+        margin: calc(2rem * 1024 / 1440) 0;
+    }
+}
+
+
+
